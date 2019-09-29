@@ -10,6 +10,14 @@
   font-weight: lighter;
 }
 
+.localWrold{
+  background: rgba(0, 0, 0, 100) !important;
+}
+
+.pipernetWrold{
+  background: rgba(0, 0, 0, 100) !important;
+}
+
 #emerald{
   width: 100px;
   height: 100px;
@@ -33,7 +41,12 @@
   animation-name: rotate;
   animation-duration: 4s;
   animation-iteration-count: infinite;
-  animation-timing-function: linear;
+}
+
+@keyframes circle {
+  0% { clip-path: circle(75%); }
+  50% { clip-path: circle(25%); }
+  100% { clip-path: circle(75%); }
 }
 
 .rotate {

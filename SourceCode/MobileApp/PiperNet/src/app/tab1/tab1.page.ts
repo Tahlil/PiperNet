@@ -5,8 +5,24 @@ import { Component } from '@angular/core';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page{
 
-  constructor() {}
+  homeViewClass:string;
+
+  constructor() {
+    this.homeViewClass = "foggy-forest";
+  }
+
+  goToLocalWorld(){
+    console.log("Clicked go to Local world.");
+    this.homeViewClass = "localWrold";
+  }
+
+  goToPiperNetWorld(){
+    console.log("Clicked go to pipernet world.");
+    this.homeViewClass = "pipernetWrold";
+  }
+
+
 
 }

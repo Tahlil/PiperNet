@@ -9,48 +9,29 @@
     <ion-label class="ml-5 text-info">Welcome!</ion-label>
   </ion-toolbar>
 </ion-header>
-
-<ion-content class="foggy-forest">
-  <br>
-  <ion-row>
-    <ion-col size="12" class="ion-text-center">
-        <h3 id="goTo">Go To...</h3>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-      <ion-col size="1">
-        </ion-col>
-    <ion-col size="4">
-      <div id="emerald" class="rotate border border-info ion-text-center"><br>Your <br> World</div>
-      
-    </ion-col>
-  </ion-row>
-  <ion-row>
-      <ion-col size="1">
-        </ion-col>
-      <ion-col size="4">
-      <div id="forst" class="rotate border border-info ion-text-center"><br>PiperNet World</div>
+  <ion-content [ngClass]="homeViewClass">
+    <br>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+          <h3 id="goTo">Go To...</h3>
       </ion-col>
     </ion-row>
-  <!-- <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Resources</ion-label>
-      </ion-list-header>
-      <ion-item href="https://ionicframework.com/docs/">
-        <ion-icon slot="start" color="medium" name="book"></ion-icon>
-        <ion-label>Ionic Documentation</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/building/scaffolding">
-        <ion-icon slot="start" color="medium" name="build"></ion-icon>
-        <ion-label>Scaffold Out Your App</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/layout/structure">
-        <ion-icon slot="start" color="medium" name="grid"></ion-icon>
-        <ion-label>Change Your App Layout</ion-label>
-      </ion-item>
-      <ion-item href="https://ionicframework.com/docs/theming/basics">
-        <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
-        <ion-label>Theme Your App</ion-label>
-      </ion-item>
-    </ion-list> -->
-</ion-content>
+    <ion-row>
+        <ion-col size="1">
+          </ion-col>
+      <ion-col size="4">
+        <button id="emerald" (click)="goToLocalWorld()" class="rotate border border-info ion-text-center">Your <br> World</button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+        <ion-col size="1">
+          </ion-col>
+        <ion-col size="4">
+        <button id="forst" (click)="goToPiperNetWorld()" class="rotate border border-info ion-text-center">PiperNet World</button>
+        </ion-col>
+      </ion-row>
+  
+    
+  </ion-content>
+
+
