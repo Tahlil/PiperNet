@@ -23,6 +23,4 @@ export class Tab1Page{
     this.homeViewClass = "pipernetWrold";
   }
 
-
-
 }
