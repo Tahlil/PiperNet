@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PiperNetWorldPage } from './piper-net-world.page';
+import { PiperNetWorldComponent } from './piper-net-world.component';
 
-describe('PiperNetWorldPage', () => {
-  let component: PiperNetWorldPage;
-  let fixture: ComponentFixture<PiperNetWorldPage>;
+describe('PiperNetWorldComponent', () => {
+  let component: PiperNetWorldComponent;
+  let fixture: ComponentFixture<PiperNetWorldComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PiperNetWorldPage ],
+      declarations: [ PiperNetWorldComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PiperNetWorldPage);
+    fixture = TestBed.createComponent(PiperNetWorldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

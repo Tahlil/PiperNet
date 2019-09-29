@@ -1,22 +1,22 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LocalWorldPage } from './local-world.page';
+import { LocalWorldComponent } from './local-world.component';
 
-describe('LocalWorldPage', () => {
-  let component: LocalWorldPage;
-  let fixture: ComponentFixture<LocalWorldPage>;
+describe('LocalWorldComponent', () => {
+  let component: LocalWorldComponent;
+  let fixture: ComponentFixture<LocalWorldComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LocalWorldPage ],
+      declarations: [ LocalWorldComponent ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LocalWorldPage);
+    fixture = TestBed.createComponent(LocalWorldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
