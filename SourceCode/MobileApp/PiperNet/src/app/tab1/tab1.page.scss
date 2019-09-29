@@ -10,13 +10,27 @@
   font-weight: lighter;
 }
 
+@keyframes coverForLocal {
+  0% { clip-path: circle(5% at 25% 25%); }
+  100% { clip-path: circle(110%  at 25% 25%); }
+}
+
+@keyframes coverForPiper {
+  0% { clip-path: circle(5% at 25% 50%); }
+  100% { clip-path: circle(110%  at 25% 50%); }
+}
+
 .localWrold{
-  background: rgba(0, 0, 0, 100) !important;
+  --background: url('../../assets/img/EmeraldGreen.jpg') 0 0/100% 100% no-repeat;
+  animation: coverForLocal 3s 1;
 }
 
 .pipernetWrold{
-  background: rgba(0, 0, 0, 100) !important;
+  --background: url('../../assets/img/frostBlue.jpg') 0 0/100% 100% no-repeat;
+  animation: coverForPiper 3s 1;
 }
+
+
 
 #emerald{
   width: 100px;
