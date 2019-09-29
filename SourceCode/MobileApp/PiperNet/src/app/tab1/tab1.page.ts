@@ -8,19 +8,24 @@ import { Component } from '@angular/core';
 export class Tab1Page{
 
   homeViewClass:string;
+  currentView:string; // possible values: home, local, piperNet
+
 
   constructor() {
     this.homeViewClass = "foggy-forest";
+    this.currentView = "home";
   }
 
   goToLocalWorld(){
     console.log("Clicked go to Local world.");
     this.homeViewClass = "localWrold";
+    this.currentView = "local";
   }
 
   goToPiperNetWorld(){
     console.log("Clicked go to pipernet world.");
     this.homeViewClass = "pipernetWrold";
+    this.currentView = "piperNet";
   }
 
 }
