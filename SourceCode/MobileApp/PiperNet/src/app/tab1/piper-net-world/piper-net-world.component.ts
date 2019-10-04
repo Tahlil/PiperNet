@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-piper-net-world',
@@ -7,12 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PiperNetWorldComponent implements OnInit {
 
+  @Output() changeView = new EventEmitter();
   constructor() { }
 
   ngOnInit() {}
 
   goBack(){
-    
+    this.changeView.emit("piperNet");
   }
 
 }

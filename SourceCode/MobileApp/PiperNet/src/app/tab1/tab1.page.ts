@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-tab1',
@@ -9,11 +10,12 @@ export class Tab1Page{
 
   homeViewClass:string;
   currentView:string; // possible values: home, local, piperNet
-
+  transitionalClass:string;
 
   constructor() {
     this.homeViewClass = "foggy-forest";
     this.currentView = "home";
+    this.transitionalClass = "";
   }
 
   goToLocalWorld(){
@@ -26,6 +28,20 @@ export class Tab1Page{
     console.log("Clicked go to pipernet world.");
     this.homeViewClass = "pipernetWrold";
     this.currentView = "piperNet";
+  }
+
+  backToHome(switchViewFrom){
+    console.log("Switched View From: "+ switchViewFrom);
+    if (switchViewFrom === "local") {
+      this.homeViewClass = "backFromLocal";
+    }
+    else if (switchViewFrom === "piperNet"){
+      this.homeViewClass = "backFromPiper";
+    }
+    setTimeout(() => {
+      this.homeViewClass = "foggy-forest";
+      this.currentView = "home";
+    }, 1000);
   }
 
 }

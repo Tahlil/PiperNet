@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-local-world',
@@ -7,12 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LocalWorldComponent implements OnInit {
 
+  //
   constructor() { }
+  @Output() changeView = new EventEmitter();
 
   ngOnInit() {}
 
   goBack(){
-    
+    this.changeView.emit("local");
   }
 
 }

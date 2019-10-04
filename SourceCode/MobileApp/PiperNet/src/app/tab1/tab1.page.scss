@@ -11,13 +11,33 @@
 }
 
 @keyframes coverForLocal {
-  0% { clip-path: circle(5% at 25% 25%); }
-  100% { clip-path: circle(110%  at 25% 25%); }
+  0% { clip-path: circle(5% at 13% 25%); }
+  100% { clip-path: circle(125%  at 13% 25%); }
 }
 
 @keyframes coverForPiper {
-  0% { clip-path: circle(5% at 25% 50%); }
-  100% { clip-path: circle(110%  at 25% 50%); }
+  0% { clip-path: circle(5% at 13% 50%); }
+  100% { clip-path: circle(125%  at 13% 50%); }
+}
+
+@keyframes localToHome {
+  0% { clip-path: circle(125%  at 13% 25%); }
+  100% { clip-path: circle(0% at 13% 25%); }
+}
+
+@keyframes piperToHome {
+  0% { clip-path: circle(125%  at 13% 50%); }
+  100% { clip-path: circle(0% at 13% 50%); }
+}
+
+.backFromLocal{
+  background: url('../../assets/img/EmeraldGreen.jpg') 0 0/100% 100% no-repeat;
+  animation: localToHome 1s 1;
+}
+
+.backFromPiper{
+  background: url('../../assets/img/frostBlue.jpg') 0 0/100% 100% no-repeat;
+  animation: piperToHome 1s 1;
 }
 
 .localWrold{
