@@ -11,4 +11,8 @@ export class PiperNetWorldComponent implements OnInit {
 
   ngOnInit() {}
 
+  goBack(){
+    
+  }
+
 }

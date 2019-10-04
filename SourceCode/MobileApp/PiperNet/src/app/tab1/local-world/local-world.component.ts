@@ -11,4 +11,8 @@ export class LocalWorldComponent implements OnInit {
 
   ngOnInit() {}
 
+  goBack(){
+    
+  }
+
 }
