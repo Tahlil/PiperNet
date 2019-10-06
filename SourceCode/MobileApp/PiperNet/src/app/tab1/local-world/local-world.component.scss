@@ -2,3 +2,27 @@
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+.localBtn{
+  text-decoration: underline;
+  color: whitesmoke;
+}
+
+.share{
+  line-height: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right:0px;
+    display:inline-block;
+    position:relative;
+}
+
+img + span.localBtn{
+  position:absolute;
+  top: 25px;
+  left: 25px;
+  opacity: 0.7;
+}
+
+#shareIcon{
+  opacity: 0.5;
+}
