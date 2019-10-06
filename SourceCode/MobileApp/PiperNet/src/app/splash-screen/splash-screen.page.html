@@ -10,6 +10,7 @@
   <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)" pager="false" >
     <ion-slide style="background-image: url('../../assets/img/splash1.png');"
     [ngStyle]="{'height': this.height}">
+    <button class="skipButton" (click)="startApp()" [hidden]="!showSkip">Skip</button>
         <h1 class="slide-title">
           Welcome to <br>
           <b style="color: aquamarine; text-shadow: -11px -9px 9px cadetblue; font-size: 55px">PiperNet</b>
@@ -20,6 +21,7 @@
     </ion-slide>
     <ion-slide style="background-image: url('../../assets/img/splash2.png');"
     [ngStyle]="{'height': this.height}">
+    <button class="skipButton" color='primary' (click)="startApp()" [hidden]="!showSkip">Skip</button>
       <h2 class="slide-title">What is PiperNet?</h2>
       <p>
         <b>Pipernet</b> is a blockchain-based web hosting scheme for
@@ -28,6 +30,7 @@
 
     <ion-slide style="background-image: url('../../assets/img/splash3.png');"
     [ngStyle]="{'height': this.height}">
+      <button class="skipButton" color='primary' (click)="startApp()" [hidden]="!showSkip">Skip</button>
       <h2 class="slide-title">Things you can do here</h2>
       <div id="features">
         <ion-icon name="checkmark"></ion-icon>
