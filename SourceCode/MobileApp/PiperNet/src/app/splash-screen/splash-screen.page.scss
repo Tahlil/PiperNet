@@ -1,21 +1,13 @@
-ion-toolbar {
-  // TODO test transparent and fullscreen
-  --background: transparent;
-  --border-color: transparent;
-}
-
 .swiper-slide {
   display: block;
 }
 
 .slide-title {
+  color: white;
   margin-top: 2.8rem;
 }
 
 .slide-image {
-  max-height: 50%;
-  max-width: 60%;
-  margin: 36px 0;
   pointer-events: none;
 }
 
@@ -23,13 +15,22 @@ b {
   font-weight: 500;
 }
 
+//#005eff
 p {
   padding: 0 40px;
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--ion-color-step-600, #60646b);
+  margin-top: 30%;
+  font-size: 17px;
+  line-height: 2.5;
+  color: var(--ion-color-step-600, #fff );
 
   b {
-    color: var(--ion-text-color, #000000);
+    color: var(--ion-text-color, rgb(0, 255, 170));
   }
+}
+
+#features{
+  color: white;
+  margin-top: 17%;
+  margin-left: 11%;
+  text-align: left; 
 }

@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MenuController, IonSlides } from '@ionic/angular';
-
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-splash-screen',
@@ -11,14 +11,19 @@ import { MenuController, IonSlides } from '@ionic/angular';
 })
 export class SplashScreenPage {
 
-  showSkip = true;
+  showSkip:boolean = true;
+  height: string;
 
   @ViewChild('slides', { static: true }) slides: IonSlides;
 
   constructor(
     public menu: MenuController,
-    public router: Router
-  ) {}
+    public router: Router,
+    public platform: Platform
+  ) {
+    console.log("Height: " + platform.height());
+    this.height = platform.height()+'px'; 
+  }
 
   startApp() {
     this.router
