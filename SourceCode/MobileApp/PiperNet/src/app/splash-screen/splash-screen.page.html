@@ -46,14 +46,16 @@
       </div>
     </ion-slide>
 
-    <ion-slide style="background: whitesmoke;"
+    <ion-slide style="background: url('../../assets/img/Splashe.png'); background-size: cover"
     [ngStyle]="{'height': this.height}">
       <h2 class="bg-info">Let's get started.</h2>
       <br>
-      <ion-button fill="clear" (click)="startApp()">
-        <h3>GO!</h3>
-        <ion-icon slot="end" name="arrow-forward"></ion-icon>
-      </ion-button>
+     
+        <ion-button fill="clear" (click)="startApp()">
+          <h3>GO!</h3>
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </ion-button>
+
     </ion-slide>
   </ion-slides>
 </ion-content>
