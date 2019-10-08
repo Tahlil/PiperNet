@@ -41,7 +41,7 @@ export class Tab1Page{
     setTimeout(() => {
       this.homeViewClass = "foggy-forest";
       this.currentView = "home";
-    }, 1000);
+    }, 900);
   }
 
 }
