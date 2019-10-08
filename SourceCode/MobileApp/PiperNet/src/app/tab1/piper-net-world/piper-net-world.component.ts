@@ -16,4 +16,8 @@ export class PiperNetWorldComponent implements OnInit {
     this.changeView.emit("piperNet");
   }
 
+  onSearchChange(){
+    
+  }
+
 }
