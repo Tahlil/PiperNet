@@ -31,7 +31,6 @@
     "@ionic/storage": "^2.2.0",
     "animate.css": "^3.7.2",
     "bootstrap": "^4.3.1",
-    "cordova-plugin-filechooser": "^1.2.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",

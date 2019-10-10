@@ -16,7 +16,9 @@ export class FileService {
   root: string;
   testFiles: string;
 
-  constructor() {
+  constructor(
+    //private fileChooser: FileChooser
+    ) {
     this.root = config.rootFolder;
     let files = this.readdir(""),
       mkdir = this.mkdir;
@@ -32,8 +34,7 @@ export class FileService {
       }
       if (rootFolderNotCreated) {
         console.log("Have to create root folder: " + this.root);
-        console.log(mkdir);
-        mkdir(this.root);
+        //mkdir(this.root);
         mkdir(this.root+"/uploads");
         mkdir(this.root+"/downloads");
       } else {
@@ -42,7 +43,7 @@ export class FileService {
   //     this.fileChooser.open()
   // .then(uri => console.log("URI: " + uri))
   // .catch(e => console.log(e));
-    });
+     });
 
     // this.readdir("").then(result => {
     //   console.log("FIles: ");
