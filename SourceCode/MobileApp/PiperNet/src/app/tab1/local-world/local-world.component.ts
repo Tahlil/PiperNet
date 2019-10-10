@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { FileService } from "../../services/file.service";
 
 @Component({
   selector: 'app-local-world',
@@ -8,7 +9,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class LocalWorldComponent implements OnInit {
 
   //
-  constructor() { }
+  constructor(private fileService: FileService) { 
+    
+  }
   @Output() changeView = new EventEmitter();
 
   ngOnInit() {}

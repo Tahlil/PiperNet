@@ -12,10 +12,17 @@ export class FileTypeIconService {
   allFileTypes: string[];
   constructor(private http: HttpClient) { 
     console.log("Initialize service:");
+    this.allFileTypes = [];
     this.http.get(fileIconListTxtPath, {responseType: 'text'})
     .subscribe(
         data => {
-            console.log(data);
+          function splitLines(t) { return t.split(/\r\n|\r|\n/); }
+          let splitedTypes = splitLines(data), index = 0;
+          for (const fileType of splitedTypes) {
+            this.allFileTypes[index] = this.getFileType(fileType);
+            index++;
+          }
+          console.log("Number of file types: " + this.allFileTypes.length);
         },
         error => {
             console.log(error);
@@ -31,9 +38,4 @@ export class FileTypeIconService {
   public getFileImagePath(fileName: string): string{
     return fileTypeIconPath + this.getFileType(fileName) + ".svg";
   }
-  public test(){
-    console.log("This is a test");
-    
-  }
-
 }
