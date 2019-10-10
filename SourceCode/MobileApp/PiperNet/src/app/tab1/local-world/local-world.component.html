@@ -14,15 +14,18 @@
   </ion-row>
   <ion-row>
     <ion-col offset="2" size="4" class="ion-text-center">
-      <button class="localBtn ion-activatable"ion-text-center> Upload File
+      <button class="localBtn ion-activatable"  ion-text-center (click)="this.openModal('Upload')"> Upload File
+          <!-- onclick="document.getElementById('uploadFile').click()" -->
       <ion-ripple-effect></ion-ripple-effect>
       </button>
     </ion-col>
     <ion-col size="4" class="ion-text-center">
-      <button class="localBtn ion-activatable" ion-text-center> <input type="file" name="myFile">
+      <button class="localBtn ion-activatable" ion-text-center (click)="this.openModal('Download')"> 
         Download File
+        <!-- onclick="document.getElementById('downloadFile').click()" -->
           <ion-ripple-effect></ion-ripple-effect>
       </button>
+      <input type='file' id="downloadFile" style="display:none">
     </ion-col>
   </ion-row>
   <ion-row>

@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>{{selectedAction}} File</ion-title>
+      <ion-buttons slot="primary">
+        <ion-button (click)="onCancel()">
+          <ion-icon name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content class="ion-text-center ion-align-items-stretch ion-padding">
+    <br><br><br>
+    <ion-text color="secondary"><h3>Select By: </h3></ion-text>
+    <br>
+    <ion-button *ngIf="selectedAction === 'Upload'" color="primary" Expand="full" (click)="this.takePhoto()">Taking Photo</ion-button>
+    <br>
+    <ion-button color="primary" Expand="full" (click)="this.getFile()">Getting File from device</ion-button>
+  </ion-content>
+  

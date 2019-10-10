@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
 import { PiperNetWorldComponent } from "./piper-net-world/piper-net-world.component";
 import { LocalWorldComponent } from "./local-world/local-world.component";
+import { FileModalComponent } from "./local-world/file-modal/file-modal.component";
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { LocalWorldComponent } from "./local-world/local-world.component";
     FormsModule,
     RouterModule.forChild([{ path: '', component: Tab1Page }])
   ],
-  declarations: [Tab1Page, PiperNetWorldComponent, LocalWorldComponent]
+  declarations: [Tab1Page, PiperNetWorldComponent, LocalWorldComponent, FileModalComponent],
+  entryComponents: [FileModalComponent]
 })
 export class Tab1PageModule {}

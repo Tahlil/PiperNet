@@ -1,5 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+
 import { FileService } from "../../services/file.service";
+import { FileModalComponent } from "./file-modal/file-modal.component";
 
 @Component({
   selector: 'app-local-world',
@@ -9,8 +12,9 @@ import { FileService } from "../../services/file.service";
 export class LocalWorldComponent implements OnInit {
 
   //
-  constructor(private fileService: FileService) { 
-    
+  constructor(private fileService: FileService,
+    private modalCtrl: ModalController) { 
+
   }
   @Output() changeView = new EventEmitter();
 
@@ -18,6 +22,24 @@ export class LocalWorldComponent implements OnInit {
 
   goBack(){
     this.changeView.emit("local");
+  }
+
+  openModal(action:string){
+    this.modalCtrl
+      .create({
+        component: FileModalComponent,
+        componentProps: { selectedAction: action }
+      })
+      .then(modalEl => {
+        modalEl.present();
+        return modalEl.onDidDismiss();
+      })
+      .then(resultData => {
+        console.log(resultData.data, resultData.role);
+        if (resultData.role === 'confirm') {
+          console.log(action + "ed File");
+        }
+      });
   }
 
 }
