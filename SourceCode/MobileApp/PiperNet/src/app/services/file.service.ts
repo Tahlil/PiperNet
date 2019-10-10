@@ -1,4 +1,6 @@
 import { Injectable } from "@angular/core";
+import { File } from "../models/file.model";
+import { FileTypeIconService } from "./file-type-icon.service";
 
 import {
   Capacitor,
@@ -18,7 +20,7 @@ export class FileService {
   root: string;
   testFiles: string;
 
-  constructor() //private fileChooser: FileChooser
+  constructor(private fileTypeService: FileTypeIconService) //private fileChooser: FileChooser
   {
     this.root = config.rootFolder;
     let files = this.readdir(""),
@@ -84,11 +86,11 @@ export class FileService {
     }
   }
 
-  private getFiles(allFiles){
-    let files = [], index = 0;
+  private getAllFilesInfo(dir){
+    let allFiles = this.readdir(dir), files = [], index = 0;
     return allFiles.then(res => {
-      for (const file of res.files) {
-        files[index] = file;
+      for (const fileName of res.files) {
+        files[index] = this.stat(dir+"/"+fileName, fileName);
         index++;
       }
       return files;
@@ -96,13 +98,13 @@ export class FileService {
   }
 
   getUploadedFiles(){
-    let allFiles = this.readdir(this.root+"/Upload");
-    return this.getFiles(allFiles);
+    let dir = this.root+"/Upload";
+    return this.getAllFilesInfo(dir);
   }
 
   getDowloadedFiles(){
-    let allFiles = this.readdir(this.root+"/Download");
-    return this.getFiles(allFiles);
+    let dir = this.root+"/Download";
+    return this.getAllFilesInfo(dir);
   }
 
   async readdir(folder) {
@@ -134,13 +136,24 @@ export class FileService {
       path: fullFilePath,
       directory: FilesystemDirectory.Documents
     });
-
     const finalPhotoUri = await Filesystem.getUri({
       directory: FilesystemDirectory.Documents,
       path: fullFilePath
     });
-
     let photoPath = Capacitor.convertFileSrc(finalPhotoUri.uri);
     console.log(photoPath);
+  }
+
+  async stat(filePath, fileName) {
+    try {
+      let ret = await Filesystem.stat({
+        path: filePath,
+        directory: FilesystemDirectory.Documents
+      });
+      let type:string = this.fileTypeService.getFileType(fileName);
+      return new File(fileName, type, ret.size>1000000 ? (ret.size/1000000.0).toFixed(2)+"MB" : (ret.size/1000.0).toFixed(2)+"KB", filePath, true);
+    } catch(e) {
+      console.error('Unable to stat file', e);
+    }
   }
 }

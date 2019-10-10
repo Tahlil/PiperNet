@@ -1,7 +1,9 @@
 export class File {
-  id: number;
-  name: string;
-  type: string;
-  path: string;
-  isPrivate: boolean;
+  constructor(
+    public name: string,
+    public type: string,
+    public size: string,
+    public path: string,
+    public isPrivate: boolean
+  ) {}
 }

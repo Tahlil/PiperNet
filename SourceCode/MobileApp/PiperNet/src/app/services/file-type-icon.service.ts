@@ -30,7 +30,7 @@ export class FileTypeIconService {
     );
   }
 
-  private getFileType(fileName: string): string{
+  getFileType(fileName: string): string{
     let splitedName = fileName.split('.');
     return splitedName[splitedName.length-1];
   }
