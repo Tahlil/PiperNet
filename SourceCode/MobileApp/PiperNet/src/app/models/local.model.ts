@@ -1,6 +1,8 @@
 import { File } from "./file.model";
 
 export class LocalFiles{
-  uploaded: File[];
-  downloaded: File[];
+  constructor(
+    public uploaded: File[],
+    public downloaded: File[]
+  ){}
 }

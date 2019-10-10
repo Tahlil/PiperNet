@@ -1,6 +1,8 @@
 import { File } from "./file.model";
 
 export class GlobalFiles{
-  recent: File[];
-  mostSeeded: File[];
+  constructor(
+    public recent: File[],
+    public mostSeeded: File[]
+  ){}
 }
