@@ -11,7 +11,18 @@ import { FileService } from "../../../services/file.service";
 export class FileModalComponent implements OnInit {
   @Input() selectedAction:string;
 
-  constructor(private fileService: FileService, private modalCtrl: ModalController) { }
+  constructor(private fileService: FileService, private modalCtrl: ModalController) {
+    let files = this.fileService.getUploadedFiles();
+    console.log("File promise: ");
+    
+    files.then(res => {
+      console.log(res);
+      for (const file of res) {
+        console.log("File: " + file);
+      }
+    });
+    
+  }
 
   ngOnInit() {}
 

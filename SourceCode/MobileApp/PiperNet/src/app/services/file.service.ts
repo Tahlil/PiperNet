@@ -66,8 +66,6 @@ export class FileService {
         path: directory,
         directory: FilesystemDirectory.Documents
       });
-
-      console.log(ret);
     } catch (e) {
       console.error("Unable to make directory");
       console.error(e);
@@ -86,14 +84,33 @@ export class FileService {
     }
   }
 
+  private getFiles(allFiles){
+    let files = [], index = 0;
+    return allFiles.then(res => {
+      for (const file of res.files) {
+        files[index] = file;
+        index++;
+      }
+      return files;
+    });
+  }
+
+  getUploadedFiles(){
+    let allFiles = this.readdir(this.root+"/Upload");
+    return this.getFiles(allFiles);
+  }
+
+  getDowloadedFiles(){
+    let allFiles = this.readdir(this.root+"/Download");
+    return this.getFiles(allFiles);
+  }
+
   async readdir(folder) {
     try {
       let ret = await Filesystem.readdir({
         path: folder,
         directory: FilesystemDirectory.Documents
       });
-      console.log("ret: ");
-      console.log(ret);
       return ret;
     } catch (e) {
       console.error("Unable to read dir", e);
