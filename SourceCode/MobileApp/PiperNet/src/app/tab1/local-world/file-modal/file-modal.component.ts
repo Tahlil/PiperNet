@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { FileService } from "../../../services/file.service";
+
 
 @Component({
   selector: 'app-file-modal',
@@ -9,7 +11,7 @@ import { ModalController } from '@ionic/angular';
 export class FileModalComponent implements OnInit {
   @Input() selectedAction:string;
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private fileService: FileService, private modalCtrl: ModalController) { }
 
   ngOnInit() {}
 
@@ -26,6 +28,7 @@ export class FileModalComponent implements OnInit {
   }
 
   takePhoto(){
+    this.fileService.takePhoto(this.selectedAction);
     this.dismiss();
   }
 

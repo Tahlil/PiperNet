@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 
-import { FileService } from "../../services/file.service";
 import { FileModalComponent } from "./file-modal/file-modal.component";
 
 @Component({
@@ -12,8 +11,7 @@ import { FileModalComponent } from "./file-modal/file-modal.component";
 export class LocalWorldComponent implements OnInit {
 
   //
-  constructor(private fileService: FileService,
-    private modalCtrl: ModalController) { 
+  constructor(private modalCtrl: ModalController) { 
 
   }
   @Output() changeView = new EventEmitter();

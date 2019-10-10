@@ -1,13 +1,15 @@
 import { Injectable } from "@angular/core";
 
 import {
+  Capacitor,
   Plugins,
+  CameraResultType,
   FilesystemDirectory,
   FilesystemEncoding
 } from "@capacitor/core";
 import { config } from "../../../app.config";
 
-const { Filesystem } = Plugins;
+const { Camera, Filesystem } = Plugins;
 
 @Injectable({
   providedIn: "root"
@@ -16,9 +18,8 @@ export class FileService {
   root: string;
   testFiles: string;
 
-  constructor(
-    //private fileChooser: FileChooser
-    ) {
+  constructor() //private fileChooser: FileChooser
+  {
     this.root = config.rootFolder;
     let files = this.readdir(""),
       mkdir = this.mkdir;
@@ -35,15 +36,15 @@ export class FileService {
       if (rootFolderNotCreated) {
         console.log("Have to create root folder: " + this.root);
         //mkdir(this.root);
-        mkdir(this.root+"/uploads");
-        mkdir(this.root+"/downloads");
+        mkdir(this.root + "/Upload");
+        mkdir(this.root + "/Download");
       } else {
         console.log("Something went wrong.");
       }
-  //     this.fileChooser.open()
-  // .then(uri => console.log("URI: " + uri))
-  // .catch(e => console.log(e));
-     });
+      //     this.fileChooser.open()
+      // .then(uri => console.log("URI: " + uri))
+      // .catch(e => console.log(e));
+    });
 
     // this.readdir("").then(result => {
     //   console.log("FIles: ");
@@ -97,5 +98,32 @@ export class FileService {
     } catch (e) {
       console.error("Unable to read dir", e);
     }
+  }
+
+  async takePhoto(folder) {
+    const options = {
+      resultType: CameraResultType.Uri
+    };
+  
+    const originalPhoto = await Camera.getPhoto(options);
+    const photoInTempStorage = await Filesystem.readFile({ path: originalPhoto.path });
+
+    let date = new Date(),
+      time = date.getTime(),
+      fileName = time + ".jpeg";
+    let fullFilePath = this.root + "/" + folder + "/" + fileName;  
+    await Filesystem.writeFile({
+      data: photoInTempStorage.data,
+      path: fullFilePath,
+      directory: FilesystemDirectory.Documents
+    });
+
+    const finalPhotoUri = await Filesystem.getUri({
+      directory: FilesystemDirectory.Documents,
+      path: fullFilePath
+    });
+
+    let photoPath = Capacitor.convertFileSrc(finalPhotoUri.uri);
+    console.log(photoPath);
   }
 }
