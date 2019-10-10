@@ -3,7 +3,6 @@ import { ModalController } from '@ionic/angular';
 
 import { FileModalComponent } from "./file-modal/file-modal.component";
 import { FileService } from "../../services/file.service";
-import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-local-world',
@@ -12,18 +11,17 @@ import { async } from '@angular/core/testing';
 })
 export class LocalWorldComponent implements OnInit {
 
+  uploadedFiles:any[];
+  downloadedFiles:any[];
+
   constructor(private fileService: FileService, private modalCtrl: ModalController) { 
-    let files = this.fileService.getUploadedFiles();
-    console.log("File promises: ");
-    files.then(res => {
-      console.log(res);
-      for (const file of res) {
-        console.log("File promise: " + file);
-        file.then(fileInfo => {
-          console.log("File Info: " + fileInfo.name + " " + fileInfo.type + " " + fileInfo.size + " " + fileInfo.path);          
-        });
-      }
-    });
+    this.downloadedFiles = [];
+    this.uploadedFiles = [];
+    let uploadedfilesPromise = this.fileService.getUploadedFiles();
+    this.getUploadedFiles(uploadedfilesPromise);
+    let downloadedfilesPromise = this.fileService.getUploadedFiles();
+    this.getUploadedFiles(downloadedfilesPromise);
+    
   }
   @Output() changeView = new EventEmitter();
 
@@ -31,6 +29,34 @@ export class LocalWorldComponent implements OnInit {
 
   goBack(){
     this.changeView.emit("local");
+  }
+
+  private getUploadedFiles(uploadedfilesPromise){
+    let index = 0;
+    uploadedfilesPromise.then(res => {
+      for (const file of res) {
+        console.log("File promise: " + file);
+        file.then(fileInfo => {
+          this.uploadedFiles[index] = fileInfo;
+          console.log("File Info: " + fileInfo.name + " " + fileInfo.type + " " + fileInfo.size + " " + fileInfo.path);
+          index++;          
+        });
+      }
+    });
+  }
+
+  private getDownloadedFiles(downloadedfilesPromise){
+    let index = 0;
+    downloadedfilesPromise.then(res => {
+      for (const file of res) {
+        console.log("File promise: " + file);
+        file.then(fileInfo => {
+          this.uploadedFiles[index] = fileInfo;
+          console.log("File Info: " + fileInfo.name + " " + fileInfo.type + " " + fileInfo.size + " " + fileInfo.path);
+          index++;          
+        });
+      }
+    }); 
   }
 
   openModal(action:string){
