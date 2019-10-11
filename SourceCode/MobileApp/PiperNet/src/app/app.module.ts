@@ -11,7 +11,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FileTypeIconService } from "./services/file-type-icon.service";
-
+import { FileOpener } from '@ionic-native/file-opener/ngx';;
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +21,7 @@ import { FileTypeIconService } from "./services/file-type-icon.service";
     StatusBar,
     SplashScreen,
     FileTypeIconService,
+    FileOpener,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

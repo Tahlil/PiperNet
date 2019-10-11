@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { File } from "../models/file.model";
 import { FileTypeIconService } from "./file-type-icon.service";
+import { FileOpener } from '@ionic-native/file-opener/ngx';
 
 import {
   Capacitor,
@@ -20,7 +21,7 @@ export class FileService {
   root: string;
   testFiles: string;
 
-  constructor(private fileTypeService: FileTypeIconService) //private fileChooser: FileChooser
+  constructor(private fileTypeService: FileTypeIconService, private fileOpener: FileOpener) //private fileChooser: FileChooser
   {
     this.root = config.rootFolder;
     let files = this.readdir(""),
@@ -52,6 +53,20 @@ export class FileService {
     //   console.log("FIles: ");
     //   console.log(result);
     // });
+  }
+
+
+  openFile(filePath:string){
+    console.log("File path: " + filePath);
+    this.fileOpener.open(filePath, 'application/pdf')
+    .then(() => console.log('File is opened'))
+    .catch(e => {
+      console.log('Error opening file:');
+      console.log(e);
+      
+    });
+  
+  
   }
 
   async fileDelete(type:string, fileName:string) {
@@ -153,7 +168,7 @@ export class FileService {
         directory: FilesystemDirectory.Documents
       });
       let type:string = this.fileTypeService.getFileType(fileName);
-      return new File(fileName, type, ret.size>1000000 ? (ret.size/1000000.0).toFixed(2)+"MB" : (ret.size/1000.0).toFixed(2)+"KB", filePath, true);
+      return new File(fileName, type, ret.size>1000000 ? (ret.size/1000000.0).toFixed(2)+"MB" : (ret.size/1000.0).toFixed(2)+"KB", ret.uri, true);
     } catch(e) {
       console.error('Unable to stat file', e);
     }
