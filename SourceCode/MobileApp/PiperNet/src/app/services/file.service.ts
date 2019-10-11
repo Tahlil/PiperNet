@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { File } from "../models/file.model";
 import { FileTypeIconService } from "./file-type-icon.service";
 import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { MimeTypeService } from "./mime-type.service";
 
 import {
   Capacitor,
@@ -21,7 +22,7 @@ export class FileService {
   root: string;
   testFiles: string;
 
-  constructor(private fileTypeService: FileTypeIconService, private fileOpener: FileOpener) //private fileChooser: FileChooser
+  constructor(private fileTypeService: FileTypeIconService, private fileOpener: FileOpener, private mimetypeService: MimeTypeService)
   {
     this.root = config.rootFolder;
     let files = this.readdir(""),
@@ -44,29 +45,17 @@ export class FileService {
       } else {
         console.log("Something went wrong.");
       }
-      //     this.fileChooser.open()
-      // .then(uri => console.log("URI: " + uri))
-      // .catch(e => console.log(e));
     });
-
-    // this.readdir("").then(result => {
-    //   console.log("FIles: ");
-    //   console.log(result);
-    // });
   }
 
-
-  openFile(filePath:string){
+  openFile(fileType:string, filePath:string){
     console.log("File path: " + filePath);
-    this.fileOpener.open(filePath, 'application/pdf')
+    this.fileOpener.showOpenWithDialog(filePath, this.mimetypeService.getMimeType(fileType))
     .then(() => console.log('File is opened'))
     .catch(e => {
       console.log('Error opening file:');
       console.log(e);
-      
     });
-  
-  
   }
 
   async fileDelete(type:string, fileName:string) {
