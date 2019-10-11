@@ -5,6 +5,7 @@ import { IonItemSliding } from "@ionic/angular";
 import { FileModalComponent } from "./file-modal/file-modal.component";
 import { FileService } from "../../services/file.service";
 import { FileTypeIconService } from "../../services/file-type-icon.service";
+import { File } from "../../models/file.model";
 
 @Component({
   selector: "app-local-world",
@@ -12,8 +13,8 @@ import { FileTypeIconService } from "../../services/file-type-icon.service";
   styleUrls: ["./local-world.component.scss"]
 })
 export class LocalWorldComponent implements OnInit {
-  uploadedFiles: any[];
-  downloadedFiles: any[];
+  uploadedFiles: File[];
+  downloadedFiles: File[];
 
   constructor(
     private fileIconService: FileTypeIconService,
@@ -95,7 +96,7 @@ export class LocalWorldComponent implements OnInit {
     slidingItem.close();
   }
 
-  open(type: string, fileName: string, slidingItem: IonItemSliding) {
+  open(type: string, filePath: string, slidingItem: IonItemSliding) {
     slidingItem.close();
   }
 
