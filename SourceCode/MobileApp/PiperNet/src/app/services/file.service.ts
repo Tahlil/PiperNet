@@ -54,10 +54,12 @@ export class FileService {
     // });
   }
 
-  async fileDelete(fileName) {
+  async fileDelete(type:string, fileName:string) {
+    let fullPath = this.root + "/" + type + "/" + fileName; 
+    console.log("Full path: " + fullPath);
     await Filesystem.deleteFile({
-      path: this.root + "/" + fileName,
-      directory: FilesystemDirectory.Data
+      path: fullPath,
+      directory: FilesystemDirectory.Documents
     });
   }
 
