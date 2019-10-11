@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient  } from '@angular/common/http';
 
-const fileTypeIconPath = "../assets/img/fileIcons/";
+const fileTypeIconPath = "../../../assets/img/fileIcons/";
 const fileIconListTxtPath = "../assets/allFileTypes.txt"
 
 @Injectable({

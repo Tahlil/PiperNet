@@ -29,3 +29,17 @@ img + span.localBtn{
 #shareIcon{
   opacity: 0.5;
 }
+
+ion-thumbnail {
+  background-image: url("../../../assets/img/EmeraldGreen.jpg");
+  min-width: 30px;
+  max-width: 30px;     
+  min-height: 30px;
+  max-height: 30px;
+  ion-img {
+    min-width: 30px;
+    max-width: 30px;     
+    min-height: 30px;
+    max-height: 30px;
+  }
+}
