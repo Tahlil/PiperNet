@@ -3,7 +3,7 @@
       <ion-col size="3" class="ion-text-center share">
         <br>
         <img src="../../../../../assets/img/Share-icon.png" class="img-fluid" width="45px" height="45px" alt="" id="shareIcon">
-        <span class="btn-floating localBtn" style="float: left">Share file </span>
+        <span class="btn-floating localBtn" style="float: left">Share</span>
       </ion-col>
     <ion-col size="7" class="ion-text-center">
       <h1 id="caption">Your World</h1>
@@ -38,8 +38,8 @@
   </ion-row>
   <ion-row>
     <ion-col size="6" class="border border-right-5 border-left-0 border-top-0 border-bottom-0 ">
-      <div class="text-center" *ngIf="uploadedFiles.length===0">
-          <ion-text class="badge badge-primary text-center">
+      <div class="text-center ion-padding" *ngIf="uploadedFiles.length===0">
+          <ion-text class="badge badge-primary text-center ion-padding">
               No File Currently Uploaded. 
               <p>Upload to get started<br> <ion-icon ios="ios-color-wand" md="md-color-wand"   style="font-size: 33px"></ion-icon></p>
             </ion-text>
@@ -61,12 +61,18 @@
                 >
                   <ion-icon name="trash" slot="icon-only"></ion-icon>
                 </ion-item-option>
+                <ion-item-option color="secondary" (click)="this.edit('upload', uploadedFile.name, uploadSlidingItem)">
+                    <ion-icon ios="ios-create" md="md-create" slot="icon-only"></ion-icon>
+                  </ion-item-option>
+                  <ion-item-option color="primary" (click)="this.open('upload', uploadedFile.name, uploadSlidingItem)">
+                      <ion-icon ios="ios-open" md="md-open" slot="icon-only"></ion-icon>
+                    </ion-item-option> 
               </ion-item-options>
             </ion-item-sliding>
           </ion-list>
     </ion-col>
     <ion-col size="6" class="border border-left-5 border-right-0 border-top-0 border-bottom-0">
-      <div class="text-center" *ngIf="downloadedFiles.length===0">
+      <div class="text-center ion-padding" *ngIf="downloadedFiles.length===0">
           <ion-text class="badge badge-primary text-center" >
               No File Downloaded yet.  
               <p>Check if there's any <br> file to download<br><ion-icon ios="ios-cloud-download" md="md-cloud-download" style="font-size: 33px"></ion-icon></p>
@@ -89,6 +95,12 @@
                   >
                     <ion-icon name="trash" slot="icon-only"></ion-icon>
                   </ion-item-option>
+                  <ion-item-option color="secondary" (click)="this.edit('download', downloadedFile.name, downloadSlidingItem)">
+                    <ion-icon ios="ios-create" md="md-create" slot="icon-only"></ion-icon>
+                  </ion-item-option>
+                  <ion-item-option color="primary" (click)="this.open('download', downloadedFile.name, downloadSlidingItem)">
+                      <ion-icon ios="ios-open" md="md-open" slot="icon-only"></ion-icon>
+                    </ion-item-option> 
                 </ion-item-options>
               </ion-item-sliding>
             </ion-list>

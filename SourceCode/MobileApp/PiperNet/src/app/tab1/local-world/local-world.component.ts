@@ -93,6 +93,14 @@ export class LocalWorldComponent implements OnInit {
     this.deleteFile(type, fileName);
   }
 
+  edit(type:string, fileName: string, slidingItem: IonItemSliding){
+    slidingItem.close();
+  }
+
+  open(type:string, fileName: string, slidingItem: IonItemSliding){
+    slidingItem.close();
+  }
+
   private deleteFile(type:string, fileName:string){
     // this.
   }
