@@ -11,8 +11,8 @@
 <ion-content color="primary">
     <ion-grid>
         <ion-row >
-          <ion-col offset="1" size="10" color="primary border border-danger" class="ion-no-padding">
-              <ion-img [src]="this.getImagePath()"></ion-img>
+          <ion-col offset="1" size="10" color="primary" class="ion-no-padding" style="height: 80%;">
+              <ion-img [src]="this.getImagePath()" ></ion-img>
               <ion-text class="text-center">
                   <div>File name: <p class="badge badge-info"> {{file.name}} </p></div>
                   <div><span>File size: </span><p class="badge badge-info"> {{file.size}} </p></div>
@@ -27,6 +27,13 @@
                     <span slot="end">.{{file.type}}</span>
                   </ion-item>
           </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col offset="1" size="10">
+              <ion-button class="text-center" expand="block" color="success" (click)="this.rename(file.name)">
+                Rename
+              </ion-button>
+            </ion-col>
           </ion-row>
         </ion-grid>
   </ion-content>

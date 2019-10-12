@@ -41,5 +41,9 @@ export class FileRenameModalComponent implements OnInit {
     this.modalCtrl.dismiss({ message: 'Complete!' }, 'confirm');
   }
 
+  rename(fileName:string){
+    
+  }
+
   
 }
