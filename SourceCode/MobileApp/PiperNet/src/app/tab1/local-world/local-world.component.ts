@@ -3,6 +3,7 @@ import { ModalController } from "@ionic/angular";
 import { IonItemSliding } from "@ionic/angular";
 
 import { FileModalComponent } from "./file-modal/file-modal.component";
+import { FileRenameModalComponent } from "./file-rename-modal/file-rename-modal.component";
 import { FileService } from "../../services/file.service";
 import { FileTypeIconService } from "../../services/file-type-icon.service";
 import { File } from "../../models/file.model";
@@ -92,10 +93,6 @@ export class LocalWorldComponent implements OnInit {
     this.deleteFile(type, fileName);
   }
 
-  edit(type: string, fileName: string, slidingItem: IonItemSliding) {
-    slidingItem.close();
-  }
-
   open(type: string, fileType: string, filePath: string, slidingItem: IonItemSliding) {
     slidingItem.close();
     this.fileService.openFile(fileType, filePath);
@@ -139,6 +136,24 @@ export class LocalWorldComponent implements OnInit {
         console.log(resultData.data, resultData.role);
         if (resultData.role === "confirm") {
           console.log(action + "ed File");
+        }
+      });
+  }
+
+  openRenameModal(file: File) {
+    this.modalCtrl
+      .create({
+        component: FileRenameModalComponent,
+        componentProps: {file : file }
+      })
+      .then(modalEl => {
+        modalEl.present();
+        return modalEl.onDidDismiss();
+      })
+      .then(resultData => {
+        console.log(resultData.data, resultData.role);
+        if (resultData.role === "confirm") {
+          console.log("Selected file: " + file.name);
         }
       });
   }
