@@ -17,7 +17,7 @@
                   <div>File name: <p class="badge badge-info"> {{file.name}} </p></div>
                   <div><span>File size: </span><p class="badge badge-info"> {{file.size}} </p></div>
                   <div><span>File type: </span><p class="badge badge-info"> {{file.type}} </p></div>
-                  <div class="ion-text-wrap border border-success"><span>File path: </span><p class="badge badge-info ion-text-wrap"> {{ file.path}} </p></div>
+                  <div><span>File path: </span><p class="badge badge-info ion-text-wrap"> {{ this.splitPath(file.path)}} </p></div>
                 </ion-text>
                 <ion-item>
                     <ion-label position="floating">New name</ion-label>

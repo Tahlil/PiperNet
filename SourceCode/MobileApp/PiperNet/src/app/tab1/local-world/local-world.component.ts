@@ -140,7 +140,8 @@ export class LocalWorldComponent implements OnInit {
       });
   }
 
-  openRenameModal(file: File) {
+  openRenameModal(file: File, slidingItem: IonItemSliding) {
+    slidingItem.close();
     this.modalCtrl
       .create({
         component: FileRenameModalComponent,
@@ -157,4 +158,5 @@ export class LocalWorldComponent implements OnInit {
         }
       });
   }
+
 }

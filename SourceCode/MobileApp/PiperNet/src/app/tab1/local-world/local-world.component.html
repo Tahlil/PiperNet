@@ -61,7 +61,7 @@
                 >
                   <ion-icon name="trash" slot="icon-only"></ion-icon>
                 </ion-item-option>
-                <ion-item-option color="secondary" (click)="this.openRenameModal(uploadedFile)">
+                <ion-item-option color="secondary" (click)="this.openRenameModal(uploadedFile, uploadSlidingItem)">
                     <ion-icon ios="ios-create" md="md-create" slot="icon-only"></ion-icon>
                   </ion-item-option>
                   <ion-item-option color="primary" (click)="this.open('Upload', uploadedFile.type, uploadedFile.path, uploadSlidingItem)">
@@ -95,7 +95,7 @@
                   >
                     <ion-icon name="trash" slot="icon-only"></ion-icon>
                   </ion-item-option>
-                  <ion-item-option color="secondary" (click)="this.openRenameModal(downloadedFile)">
+                  <ion-item-option color="secondary" (click)="this.openRenameModal(downloadedFile, downloadSlidingItem)">
                     <ion-icon ios="ios-create" md="md-create" slot="icon-only"></ion-icon>
                   </ion-item-option>
                   <ion-item-option color="primary" (click)="this.open('Download', downloadedFile.type, downloadedFile.path, downloadSlidingItem)">

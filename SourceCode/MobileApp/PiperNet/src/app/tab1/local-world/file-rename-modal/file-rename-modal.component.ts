@@ -25,9 +25,9 @@ export class FileRenameModalComponent implements OnInit {
   }
 
   splitPath(filePath: string): string{
-    let splitedPath = filePath.split("//"), finalPath = "", i = 0;
+    let splitedPath = filePath.split("/"), finalPath = "", i = 3;
     for (; i < splitedPath.length-1; i++) {
-      finalPath += (splitedPath[i] + " -  ");
+      finalPath += (splitedPath[i] + " / ");
     }
     finalPath += splitedPath[i];
     return finalPath;
