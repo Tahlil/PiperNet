@@ -132,7 +132,6 @@ export class FileService {
   
     const originalPhoto = await Camera.getPhoto(options);
     const photoInTempStorage = await Filesystem.readFile({ path: originalPhoto.path });
-
     let date = new Date(),
       time = date.getTime(),
       fileName = time + ".jpeg";
@@ -147,7 +146,7 @@ export class FileService {
       path: fullFilePath
     });
     let photoPath = Capacitor.convertFileSrc(finalPhotoUri.uri);
-    console.log(photoPath);
+    console.log("\n\n\n\n\n\nFinished\n\n\n\n\n\n");
   }
 
   async stat(filePath, fileName) {

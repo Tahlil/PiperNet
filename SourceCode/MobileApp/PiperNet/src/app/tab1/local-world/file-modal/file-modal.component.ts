@@ -28,9 +28,10 @@ export class FileModalComponent implements OnInit {
     this.dismiss();
   }
 
-  takePhoto(){
-    this.fileService.takePhoto(this.selectedAction);
-    this.dismiss();
+  async takePhoto(){
+    this.fileService.takePhoto(this.selectedAction).then((_) => {
+      this.dismiss();
+    });    
   }
 
 }

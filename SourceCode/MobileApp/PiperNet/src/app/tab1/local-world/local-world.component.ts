@@ -122,7 +122,16 @@ export class LocalWorldComponent implements OnInit {
     return -1;
   }
 
-  openModal(action: string) {
+  private refresh(currentAction:string){
+    if (currentAction === 'Download') {
+      this.getDownloadedFiles(this.fileService.getDowloadedFiles());
+    }
+    else if (currentAction === 'Upload') {
+      this.getUploadedFiles(this.fileService.getUploadedFiles());
+    }
+  }
+
+  openModal(action: 'Upload' | 'Download') {
     this.modalCtrl
       .create({
         component: FileModalComponent,
@@ -133,9 +142,13 @@ export class LocalWorldComponent implements OnInit {
         return modalEl.onDidDismiss();
       })
       .then(resultData => {
-        console.log(resultData.data, resultData.role);
+        console.log(resultData.role);
         if (resultData.role === "confirm") {
+          this.refresh(action);            
           console.log(action + "ed File");
+        }
+        else{
+          console.error("Something went wrong...");
         }
       });
   }
@@ -154,12 +167,7 @@ export class LocalWorldComponent implements OnInit {
       .then(resultData => {
         console.log(resultData.data, resultData.role);
         if (resultData.role === "confirm") {
-          if (actionType === 'Download') {
-            this.getDownloadedFiles(this.fileService.getDowloadedFiles());
-          }
-          else if (actionType === 'Upload') {
-            this.getUploadedFiles(this.fileService.getUploadedFiles());
-          }
+          this.refresh(actionType);
           console.log("Selected file: " + file.name);
           console.log("Confirm....");
         }
