@@ -57,6 +57,9 @@
         >
           Rename
         </ion-button>
+        <div class="alert alert-danger" *ngIf="!this.valid">
+            <strong>Error: </strong> Name field can not be empty.
+      </div>
       </ion-col>
     </ion-row>
   </ion-grid>

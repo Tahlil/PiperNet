@@ -14,7 +14,12 @@ export class FileRenameModalComponent implements OnInit {
   @Input() actionType:'Download' | 'Upload';
 
   newName:string;
-  constructor(private fileService: FileService, public fileIconService:FileTypeIconService, private modalCtrl: ModalController) { }
+  valid:boolean;
+
+  constructor(private fileService: FileService, public fileIconService:FileTypeIconService, private modalCtrl: ModalController) {
+    this.newName = "";
+    this.valid = true;
+  }
 
   ngOnInit() {
     console.log(this.file);
@@ -40,17 +45,18 @@ export class FileRenameModalComponent implements OnInit {
   }
 
   private dismiss() {
+    this.valid = true;
     this.modalCtrl.dismiss({ message: 'Complete!' }, 'confirm');
   }
 
   onSubmit(){
     if (this.newName === "") {
+      this.valid = false;
       return;
     }
     console.log("New name: " + this.newName);
     this.fileService.rename(this.actionType, this.file.name, this.newName+"."+this.file.type);
     this.dismiss();
-    //this.fileService.ren
   }
 
   
