@@ -162,4 +162,17 @@ export class FileService {
       console.error('Unable to stat file', e);
     }
   }
+
+  async rename(actionType:'Download' | 'Upload', originalName:string, newName:string) {
+    try {
+      console.log("Renaming...");
+      let ret = await Filesystem.rename({
+        from: this.root+ "/" + actionType + "/" + originalName,
+        to: this.root+ "/" + actionType + "/" + newName,
+        directory: FilesystemDirectory.Documents
+      });
+    } catch(e) {
+      console.error('Unable to rename file', e);
+    }
+  }
 }

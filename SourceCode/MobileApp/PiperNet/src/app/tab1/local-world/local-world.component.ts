@@ -140,12 +140,12 @@ export class LocalWorldComponent implements OnInit {
       });
   }
 
-  openRenameModal(file: File, slidingItem: IonItemSliding) {
+  openRenameModal(actionType: 'Upload' | 'Download', file: File, slidingItem: IonItemSliding) {
     slidingItem.close();
     this.modalCtrl
       .create({
         component: FileRenameModalComponent,
-        componentProps: {file : file }
+        componentProps: {file : file, actionType: actionType }
       })
       .then(modalEl => {
         modalEl.present();

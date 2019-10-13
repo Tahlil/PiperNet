@@ -11,7 +11,9 @@ import { FileTypeIconService } from "../../../services/file-type-icon.service";
 })
 export class FileRenameModalComponent implements OnInit {
   @Input() file:File;
+  @Input() actionType:'Download' | 'Upload';
 
+  newName:string;
   constructor(private fileService: FileService, public fileIconService:FileTypeIconService, private modalCtrl: ModalController) { }
 
   ngOnInit() {
@@ -41,8 +43,14 @@ export class FileRenameModalComponent implements OnInit {
     this.modalCtrl.dismiss({ message: 'Complete!' }, 'confirm');
   }
 
-  rename(fileName:string){
-    
+  onSubmit(){
+    if (this.newName === "") {
+      return;
+    }
+    console.log("New name: " + this.newName);
+    this.fileService.rename(this.actionType, this.file.name, this.newName+"."+this.file.type);
+    this.dismiss();
+    //this.fileService.ren
   }
 
   
