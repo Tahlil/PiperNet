@@ -154,7 +154,14 @@ export class LocalWorldComponent implements OnInit {
       .then(resultData => {
         console.log(resultData.data, resultData.role);
         if (resultData.role === "confirm") {
+          if (actionType === 'Download') {
+            this.getDownloadedFiles(this.fileService.getDowloadedFiles());
+          }
+          else if (actionType === 'Upload') {
+            this.getUploadedFiles(this.fileService.getUploadedFiles());
+          }
           console.log("Selected file: " + file.name);
+          console.log("Confirm....");
         }
       });
   }
