@@ -59,5 +59,9 @@ export class FileRenameModalComponent implements OnInit {
     this.dismiss();
   }
 
-  
+  getPrettyDate(time){
+    return new Date(time).toUTCString();
+  }
+
+
 }

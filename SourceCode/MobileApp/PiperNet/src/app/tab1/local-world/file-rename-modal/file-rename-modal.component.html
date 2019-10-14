@@ -18,7 +18,7 @@
         class="ion-no-padding"
         style="height: 80%;"
       >
-        <ion-img [src]="this.getImagePath()"></ion-img>
+        <ion-img [src]="this.getImagePath()" style="height: 80%;"></ion-img>
         <ion-text class="text-center">
           <div>
             File name:
@@ -26,8 +26,12 @@
           </div>
           <div>
             <span>File size: </span>
-            <p class="badge badge-info">{{ file.size }}</p>
+            <span class="badge badge-info">{{ file.size }}</span>
           </div>
+          <div>
+              <span>File Last Changed: </span>
+              <span class="badge badge-info">{{ this.getPrettyDate(file.mtime) }}</span>
+            </div>
           <div>
             <span>File type: </span>
             <p class="badge badge-info">{{ file.type }}</p>

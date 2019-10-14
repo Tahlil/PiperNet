@@ -169,7 +169,10 @@ export class FileService {
         directory: FilesystemDirectory.Documents
       });
       let type:string = this.fileTypeService.getFileType(fileName);
-      return new File(fileName, type, ret.size>1000000 ? (ret.size/1000000.0).toFixed(2)+"MB" : (ret.size/1000.0).toFixed(2)+"KB", ret.uri, true);
+      console.log("\n\n\n\n\nRet: \n\n\n\n");
+      console.log(ret);
+      console.log("\n\n\n\nctime: " + ret.ctime + "\n\n\nmtime: "+ ret.mtime + "\n\n\ntype: "+ ret.type + "\n\n\nuri: "+ ret.uri + "\n\n\n");
+      return new File(fileName, ret.mtime, type, ret.size>1000000 ? (ret.size/1000000.0).toFixed(2)+"MB" : (ret.size/1000.0).toFixed(2)+"KB", ret.uri, true);
     } catch(e) {
       console.error('Unable to stat file', e);
     }
