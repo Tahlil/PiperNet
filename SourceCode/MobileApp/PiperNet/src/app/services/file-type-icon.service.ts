@@ -36,6 +36,6 @@ export class FileTypeIconService {
   }
 
   public getFileImagePath(fileName: string): string{
-    return fileTypeIconPath + this.getFileType(fileName) + ".svg";
+    return fileTypeIconPath + this.getFileType(fileName).toLowerCase() + ".svg";
   }
 }
