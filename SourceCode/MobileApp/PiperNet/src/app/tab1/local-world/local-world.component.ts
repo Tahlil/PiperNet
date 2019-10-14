@@ -174,4 +174,7 @@ export class LocalWorldComponent implements OnInit {
       });
   }
 
+  onSearchChange($event){
+    
+  }
 }
