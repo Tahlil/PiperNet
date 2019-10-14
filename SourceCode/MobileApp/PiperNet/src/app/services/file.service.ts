@@ -48,6 +48,19 @@ export class FileService {
     });
   }
 
+  fileWrite(actionType: 'Upload' | 'Download', fileName:string, base64data:string) {
+    try {
+      Filesystem.writeFile({
+        path: this.root + "/" + actionType + "/" + fileName,
+        data: base64data,
+        directory: FilesystemDirectory.Documents
+        //encoding: FilesystemEncoding.UTF8
+      })
+    } catch(e) {
+      console.error('Unable to write file', e);
+    }
+  }
+
   openFile(fileType:string, filePath:string){
     console.log("File path: " + filePath);
     this.fileOpener.showOpenWithDialog(filePath, this.mimetypeService.getMimeType(fileType))

@@ -15,6 +15,11 @@
     <br>
     <ion-button *ngIf="selectedAction === 'Upload'" color="primary" Expand="full" (click)="this.takePhoto()">Taking Photo</ion-button>
     <br>
-    <ion-button color="primary" Expand="full" (click)="this.getFile()">Getting File from device</ion-button>
+    <ion-button color="primary" Expand="full" (click)="this.clickFileInput()">Getting File from device</ion-button>
+    <label style="opacity: 0;">
+        <input id="inputFile"  class="inputFile"   type="file" accept="image/*" (change)="this.changeListener($event);"/>
+         <span id="input-file-replacer">Select file</span>
+      </label>
+    <!-- <input type="file" id="inputFile" name="upload" style="opacity: 0; filter:alpha(opacity=0);" /> -->
   </ion-content>
   
