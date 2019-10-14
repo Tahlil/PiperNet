@@ -38,9 +38,9 @@ export class FileModalComponent implements OnInit {
   changeListener($event) {
     let myFile = $event.target.files[0];
     console.log(myFile);
-    var imageFile = myFile;
+    let imageFile = myFile;
     let base64Image;
-    var fileReader = new FileReader();
+    let fileReader = new FileReader();
     fileReader.onload = e => {
       base64Image = fileReader.result;
       const type = base64Image.split(";")[1];

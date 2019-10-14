@@ -17,7 +17,7 @@ export class MimeTypeService {
     let type = "none";
     for (let index = 0; index < this.numberOfMimeTypes; index++) {
       const mimePair = mimeTypeMap[index];
-      if(mimePair[0] === "."+fileType){
+      if(mimePair[0] === "."+fileType.toLowerCase()){
         return mimePair[1];
       }
     }
