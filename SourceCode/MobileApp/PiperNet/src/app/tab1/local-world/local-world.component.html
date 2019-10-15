@@ -53,17 +53,17 @@
           <span>Sort <br>by</span>
       </ion-col>
       <ion-col size="4" class="sort-select">
-          <ion-select class="select">
-              <ion-select-option value="date-a" 
+          <ion-select class="select" [(ngModel)]="uploadSort" (ionChange)="this.sortUploads();">
+              <ion-select-option value="mtime-a" 
                 >Date &uarr;</ion-select-option
               >
-              <ion-select-option value="date-d" selected
+              <ion-select-option value="mtime-d" 
                 >Date &darr;</ion-select-option
               >
-              <ion-select-option value="alphabet-a"
+              <ion-select-option value="name-a"
                 >Alph &uarr;</ion-select-option
               >
-              <ion-select-option value="alphabet-d"
+              <ion-select-option value="name-d"
                 >Alph &darr;</ion-select-option
               >
             </ion-select>
@@ -71,18 +71,18 @@
       <ion-col size="2" class="sort-label" >
           <span>Sort <br>by</span>
       </ion-col>
-      <ion-col size="4" class="sort-select">
-          <ion-select class="select">
-              <ion-select-option value="date-a" 
+      <ion-col size="4" class="sort-select" >
+          <ion-select class="select" [(ngModel)]="downloadSort" (ionChange)="this.sortDownloads()">
+              <ion-select-option value="mtime-a" 
                 >Date &uarr;</ion-select-option
               >
-              <ion-select-option value="date-d" selected
+              <ion-select-option value="mtime-d"
                 >Date &darr;</ion-select-option
               >
-              <ion-select-option value="alphabet-a"
+              <ion-select-option value="name-a"
                 >Alph &uarr;</ion-select-option
               >
-              <ion-select-option value="alphabet-d"
+              <ion-select-option value="name-d"
                 >Alph &darr;</ion-select-option
               >
             </ion-select>

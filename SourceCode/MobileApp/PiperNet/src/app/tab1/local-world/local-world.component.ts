@@ -16,6 +16,8 @@ import { File } from "../../models/file.model";
 export class LocalWorldComponent implements OnInit {
   uploadedFiles: File[];
   downloadedFiles: File[];
+  uploadSort: string;
+  downloadSort: string;
 
   constructor(
     private fileIconService: FileTypeIconService,
@@ -27,12 +29,34 @@ export class LocalWorldComponent implements OnInit {
     let uploadedfilesPromise = this.fileService.getUploadedFiles();
     this.getUploadedFiles(uploadedfilesPromise);
     let downloadedfilesPromise = this.fileService.getDowloadedFiles();
-    this.getDownloadedFiles(downloadedfilesPromise);
+    this.getDownloadedFiles(downloadedfilesPromise);    
   }
 
   @Output() changeView = new EventEmitter();
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
+
+  private sortAscendingOrder(fileList, sortBy){
+    fileList.sort((a, b) => (a[sortBy] > b[sortBy]) ? 1 : -1);
+  }
+
+  private sortDescendingOrder(fileList, sortBy){
+    fileList.sort((a, b) => (a[sortBy] > b[sortBy]) ? -1 : 1);
+  }
+
+  sortUploads(){
+    console.log("U: " + this.uploadSort);
+    let splitedValue = this.uploadSort.split("-");
+    splitedValue[1] === "a" ? this.sortAscendingOrder(this.uploadedFiles, splitedValue[0]) : this.sortDescendingOrder(this.uploadedFiles, splitedValue[0]);
+  }
+
+  sortDownloads(){    
+    console.log("D: " + this.downloadSort);
+    let splitedValue = this.uploadSort.split("-");
+    splitedValue[1] === "a" ? this.sortAscendingOrder(this.downloadedFiles, splitedValue[0]) : this.sortDescendingOrder(this.downloadedFiles, splitedValue[0]);
+  }
 
   goBack() {
     this.changeView.emit("local");
