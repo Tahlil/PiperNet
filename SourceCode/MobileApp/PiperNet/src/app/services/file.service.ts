@@ -40,18 +40,20 @@ export class FileService {
       if (rootFolderNotCreated) {
         console.log("Have to create root folder: " + this.root);
         //mkdir(this.root);
-        mkdir(this.root + "/Upload");
-        mkdir(this.root + "/Download");
+        mkdir(this.root + "/Upload/private");
+        mkdir(this.root + "/Upload/public");
+        mkdir(this.root + "/Download/private");
+        mkdir(this.root + "/Download/public");
       } else {
         console.log("Something went wrong.");
       }
     });
   }
 
-  fileWrite(actionType: 'Upload' | 'Download', fileName:string, base64data:string) {
+  fileWrite(actionType: 'Upload' | 'Download', fileName:string, base64data:string, privacy: 'private' | 'public') {
     try {
       Filesystem.writeFile({
-        path: this.root + "/" + actionType + "/" + fileName,
+        path: this.root + "/" + actionType + "/" + privacy + "/" + fileName,
         data: base64data,
         directory: FilesystemDirectory.Documents
         //encoding: FilesystemEncoding.UTF8
@@ -106,13 +108,20 @@ export class FileService {
   }
 
   private getAllFilesInfo(dir){
-    let allFiles = this.readdir(dir), files = [], index = 0;
-    return allFiles.then(res => {
+    let privateFiles = this.readdir(dir+"/"+"private"), files = [], index = 0;
+    return privateFiles.then(res => {
       for (const fileName of res.files) {
-        files[index] = this.stat(dir+"/"+fileName, fileName);
+        files[index] = this.stat(dir+"/"+"private"+"/"+fileName, fileName, 'private');
         index++;
       }
-      return files;
+      let publicFiles = this.readdir(dir+"/"+"public");
+      return publicFiles.then(pubRes => {
+        for (const fileName of pubRes.files) {
+          files[index] = this.stat(dir+"/"+"public"+"/"+fileName, fileName, 'public');
+          index++;
+        }
+        return files;
+      });
     });
   }
 
@@ -148,7 +157,7 @@ export class FileService {
     let date = new Date(),
       time = date.getTime(),
       fileName = time + ".jpeg";
-    let fullFilePath = this.root + "/" + folder + "/" + fileName;  
+    let fullFilePath = this.root + "/" + folder + "/" + 'private' + "/" + fileName;  
     await Filesystem.writeFile({
       data: photoInTempStorage.data,
       path: fullFilePath,
@@ -162,7 +171,7 @@ export class FileService {
     console.log("\n\n\n\n\n\nFinished\n\n\n\n\n\n");
   }
 
-  async stat(filePath, fileName) {
+  async stat(filePath, fileName, privacy: 'private'| 'public' ) {
     try {
       let ret = await Filesystem.stat({
         path: filePath,
@@ -172,7 +181,7 @@ export class FileService {
       console.log("\n\n\n\n\nRet: \n\n\n\n");
       console.log(ret);
       console.log("\n\n\n\nctime: " + ret.ctime + "\n\n\nmtime: "+ ret.mtime + "\n\n\ntype: "+ ret.type + "\n\n\nuri: "+ ret.uri + "\n\n\n");
-      return new File(fileName, ret.mtime, type, ret.size>1000000 ? (ret.size/1000000.0).toFixed(2)+"MB" : (ret.size/1000.0).toFixed(2)+"KB", ret.uri, true);
+      return new File(fileName, ret.mtime, type, ret.size>1000000 ? (ret.size/1000000.0).toFixed(2)+"MB" : (ret.size/1000.0).toFixed(2)+"KB", ret.uri, privacy === 'private');
     } catch(e) {
       console.error('Unable to stat file', e);
     }

@@ -43,7 +43,7 @@ export class FileModalComponent implements OnInit {
       base64File = fileReader.result;
       const type = base64File.split(";")[1];
       base64File = type.split(",")[1];
-      this.fileService.fileWrite(this.selectedAction, myFile.name, base64File);
+      this.fileService.fileWrite(this.selectedAction, myFile.name, base64File, 'private');
       this.dismiss();
     };
     fileReader.readAsDataURL(myFile);
