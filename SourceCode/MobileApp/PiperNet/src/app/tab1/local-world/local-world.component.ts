@@ -253,8 +253,8 @@ export class LocalWorldComponent implements OnInit {
       this.uploadedFiles[index].isPrivate = !this.uploadedFiles[index].isPrivate;
     }
     else{
-      this.fullDownloadList[index].isPrivate = !this.fullDownloadList[index].isPrivate);
-      this.downloadedFiles[index].isPrivate = !this.downloadedFiles[index].isPrivate);
+      this.fullDownloadList[index].isPrivate = !this.fullDownloadList[index].isPrivate;
+      this.downloadedFiles[index].isPrivate = !this.downloadedFiles[index].isPrivate;
     }
     console.log("Index: " + index + " privacy: " + this.uploadedFiles[index].isPrivate + " name: " + this.uploadedFiles[index].name);
     //this.refresh(actionType);
