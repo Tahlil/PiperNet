@@ -12,8 +12,12 @@ export class ShareModalComponent implements OnInit {
   @Input() files:File[];
 
   shareTo: string;
+  valid:boolean;
 
-  constructor(public fileIconService:FileTypeIconService, private modalCtrl: ModalController) { }
+  constructor(public fileIconService:FileTypeIconService, private modalCtrl: ModalController) {
+    this.shareTo = "";
+    this.valid = true;
+  }
 
   ngOnInit() {}
 
@@ -22,10 +26,15 @@ export class ShareModalComponent implements OnInit {
   }
 
   private dismiss() {
+    this.valid = true;
     this.modalCtrl.dismiss({ message: 'Complete!' }, 'confirm');
   }
 
   share(){
+    if (this.shareTo === "") {
+      this.valid = false;
+      return;
+    }
     this.dismiss(); 
   }
 
