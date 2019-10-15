@@ -55,7 +55,7 @@ export class FileRenameModalComponent implements OnInit {
       return;
     }
     console.log("New name: " + this.newName);
-    this.fileService.rename(this.actionType, this.file.name, this.newName+"."+this.file.type);
+    this.fileService.rename(this.actionType, this.file.name, this.newName+"."+this.file.type, this.file.isPrivate);
     this.dismiss();
   }
 

@@ -22,7 +22,7 @@
         <ion-text class="text-center">
           <div>
             File name:
-            <p class="badge badge-info">{{ file.name }}</p>
+            <p class="badge badge-info">{{ file.name }} <ion-icon color="danger" *ngIf="file.isPrivate" ios="ios-lock" md="md-lock"></ion-icon></p>
           </div>
           <div>
             <span>File size: </span>

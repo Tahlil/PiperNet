@@ -74,7 +74,7 @@ export class FileService {
   }
 
   async fileDelete(type:string, fileName:string, isPrivate:boolean) {
-    let privacy = isPrivate ? 'private' : 'public';
+    let privacy = this.getPrivacyFolder(isPrivate);
     let fullPath = this.root + "/" + type + "/" + privacy + "/" + fileName; 
     console.log("Full path: " + fullPath);
     await Filesystem.deleteFile({
@@ -188,12 +188,17 @@ export class FileService {
     }
   }
 
-  async rename(actionType:'Download' | 'Upload', originalName:string, newName:string) {
+  private getPrivacyFolder(isPrivate:boolean){
+    return isPrivate ? 'private' : 'public'
+  }
+
+  async rename(actionType:'Download' | 'Upload', originalName:string, newName:string, isPrivate: boolean) {
+    let privacyFolder = this.getPrivacyFolder(isPrivate);
     try {
       console.log("Renaming...");
       let ret = await Filesystem.rename({
-        from: this.root+ "/" + actionType + "/" + originalName,
-        to: this.root+ "/" + actionType + "/" + newName,
+        from: this.root+ "/" + actionType + "/" + privacyFolder + "/" + originalName,
+        to: this.root+ "/" + actionType + "/" + privacyFolder + "/" + newName,
         directory: FilesystemDirectory.Documents
       });
     } catch(e) {
