@@ -245,5 +245,18 @@ export class LocalWorldComponent implements OnInit {
     console.log("Search res: " + searchDigest);
   }
 
-
+  changePrivacy(actionType: 'Upload' | 'Download', index:number){
+    console.log("Index: " + index + " privacy: " + this.uploadedFiles[index].isPrivate + " name: " + this.uploadedFiles[index].name);
+    
+    if(actionType === 'Upload'){  
+      this.fullUploadList[index].isPrivate = !this.fullUploadList[index].isPrivate;
+      this.uploadedFiles[index].isPrivate = !this.uploadedFiles[index].isPrivate;
+    }
+    else{
+      this.fullDownloadList[index].isPrivate = !this.fullDownloadList[index].isPrivate);
+      this.downloadedFiles[index].isPrivate = !this.downloadedFiles[index].isPrivate);
+    }
+    console.log("Index: " + index + " privacy: " + this.uploadedFiles[index].isPrivate + " name: " + this.uploadedFiles[index].name);
+    //this.refresh(actionType);
+  }
 }
