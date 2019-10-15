@@ -3,6 +3,7 @@ import { ModalController } from "@ionic/angular";
 import { IonItemSliding } from "@ionic/angular";
 
 import { FileModalComponent } from "./file-modal/file-modal.component";
+import { ShareModalComponent } from "./share-modal/share-modal.component";
 import { FileRenameModalComponent } from "./file-rename-modal/file-rename-modal.component";
 import { FileService } from "../../services/file.service";
 import { FileTypeIconService } from "../../services/file-type-icon.service";
@@ -26,8 +27,8 @@ export class LocalWorldComponent implements OnInit {
     private fileService: FileService,
     private modalCtrl: ModalController
   ) {
-    this.downloadedFiles = [];
-    this.uploadedFiles = [];
+    this.downloadedFiles = [], this.fullDownloadList = [];
+    this.uploadedFiles = [], this.fullUploadList = [];
     let uploadedfilesPromise = this.fileService.getUploadedFiles();
     this.getUploadedFiles(uploadedfilesPromise);
     let downloadedfilesPromise = this.fileService.getDowloadedFiles();
@@ -181,6 +182,35 @@ export class LocalWorldComponent implements OnInit {
       });
   }
 
+  shareFromAll(){
+    this.openShareModal([ ...this.fullUploadList, ...this.fullDownloadList]);
+  }
+
+  shareIndividualFile(file: File){
+    this.openShareModal([file]);
+  }
+
+  private openShareModal(filesCanBeShare: File[]) {
+    this.modalCtrl
+      .create({
+        component: ShareModalComponent,
+        componentProps: { files: filesCanBeShare }
+      })
+      .then(modalEl => {
+        modalEl.present();
+        return modalEl.onDidDismiss();
+      })
+      .then(resultData => {
+        console.log(resultData.role);
+        if (resultData.role === "confirm") {
+          console.log("Shared File");
+        }
+        else{
+          console.error("Something went wrong...");
+        }
+      });
+  }
+
   openRenameModal(actionType: 'Upload' | 'Download', file: File, slidingItem: IonItemSliding) {
     slidingItem.close();
     this.modalCtrl
@@ -214,4 +244,6 @@ export class LocalWorldComponent implements OnInit {
     }
     console.log("Search res: " + searchDigest);
   }
+
+
 }

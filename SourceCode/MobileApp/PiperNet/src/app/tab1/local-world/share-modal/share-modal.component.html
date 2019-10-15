@@ -1,0 +1,56 @@
+<ion-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col offset="1" size="5">
+            <ion-title>Share File</ion-title>
+        </ion-col>
+        <ion-col size="5">
+            <ion-buttons slot="primary">
+                <ion-button (click)="onCancel()" slot="end">
+                  <ion-icon name="close"></ion-icon>
+                </ion-button>
+              </ion-buttons>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-no-padding">
+        <ion-col offset="1" size="10" *ngFor="let file of files">
+          <ion-item class="share">
+              <ion-thumbnail slot="start">
+          <ion-img [src]="this.fileIconService.getFileImagePath(file.type)" style="height: 80%;"></ion-img>
+              </ion-thumbnail>
+              <ion-label>
+                <h3>{{ file.name }}</h3>
+                <p>{{ file.size }}</p>
+              </ion-label>
+              <ion-checkbox color="primary" slot="end"></ion-checkbox>
+            </ion-item>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col offset="2" size="8">
+            <ion-item>
+              <ion-label position="floating">Share to:</ion-label>
+                <ion-input required minlength="1" type="text" [(ngModel)]="this.shareTo"
+                ></ion-input>
+              </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col offset="1" size="10">
+          <ion-button
+            type="submit"
+            class="text-center"
+            expand="block"
+            color="success"
+            (click)="share()"
+          >
+            Share
+          </ion-button>
+          <div class="alert alert-danger" *ngIf="!this.valid">
+              <strong>Error: </strong> Name field can not be empty.
+        </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+  

@@ -16,7 +16,7 @@ export class FileRenameModalComponent implements OnInit {
   newName:string;
   valid:boolean;
 
-  constructor(private fileService: FileService, public fileIconService:FileTypeIconService, private modalCtrl: ModalController) {
+  constructor(private fileService: FileService, private fileIconService:FileTypeIconService, private modalCtrl: ModalController) {
     this.newName = "";
     this.valid = true;
   }
