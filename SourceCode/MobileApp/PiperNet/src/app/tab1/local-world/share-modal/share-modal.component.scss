@@ -3,5 +3,10 @@ ion-content{
 }
 
 .share{
-  --background: rgb(34, 187, 69);
+  --background: rgb(34, 187, 69, 0.3);
+}
+
+#fileList{
+  max-height: 355px;
+  overflow-y: scroll;
 }
