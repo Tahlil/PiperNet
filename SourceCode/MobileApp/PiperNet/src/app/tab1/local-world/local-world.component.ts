@@ -117,7 +117,7 @@ export class LocalWorldComponent implements OnInit {
     return this.fileIconService.getFileImagePath(fileType);
   }
 
-  onDelete(type: string, fileName: string, isPrivate:boolean, slidingItem: IonItemSliding) {
+  onDelete(type: 'Upload' | 'Download', fileName: string, isPrivate:boolean, slidingItem: IonItemSliding) {
     slidingItem.close();
     this.deleteFile(type, fileName, isPrivate);
   }
@@ -127,7 +127,7 @@ export class LocalWorldComponent implements OnInit {
     this.fileService.openFile(fileType, filePath);
   }
 
-  private deleteFile(type: string, fileName: string, isPrivate:boolean) {
+  private deleteFile(type:'Upload' | 'Download', fileName: string, isPrivate:boolean) {
     this.fileService.fileDelete(type, fileName, isPrivate);
     let index;
     if (type === "Upload") {
@@ -249,9 +249,11 @@ export class LocalWorldComponent implements OnInit {
     console.log("Index: " + index + " privacy: " + this.uploadedFiles[index].isPrivate + " name: " + this.uploadedFiles[index].name);
     
     if(actionType === 'Upload'){  
+      this.fileService.moveToDifPrivacyFolder(this.uploadedFiles[index].isPrivate, actionType, this.uploadedFiles[index].name);
       this.uploadedFiles[index].isPrivate = !this.uploadedFiles[index].isPrivate;
     }
     else{
+      this.fileService.moveToDifPrivacyFolder(this.downloadedFiles[index].isPrivate, 'Download', this.downloadedFiles[index].name);
       this.downloadedFiles[index].isPrivate = !this.downloadedFiles[index].isPrivate;
     }
     console.log("Index: " + index + " privacy: " + this.uploadedFiles[index].isPrivate + " name: " + this.uploadedFiles[index].name);

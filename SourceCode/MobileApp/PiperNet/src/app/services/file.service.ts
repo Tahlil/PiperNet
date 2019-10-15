@@ -73,9 +73,9 @@ export class FileService {
     });
   }
 
-  async fileDelete(type:string, fileName:string, isPrivate:boolean) {
+  async fileDelete(actionType:'Upload' | 'Download', fileName:string, isPrivate:boolean) {
     let privacy = this.getPrivacyFolder(isPrivate);
-    let fullPath = this.root + "/" + type + "/" + privacy + "/" + fileName; 
+    let fullPath = this.root + "/" + actionType + "/" + privacy + "/" + fileName; 
     console.log("Full path: " + fullPath);
     await Filesystem.deleteFile({
       path: fullPath,
@@ -203,6 +203,24 @@ export class FileService {
       });
     } catch(e) {
       console.error('Unable to rename file', e);
+    }
+  }
+
+  async moveToDifPrivacyFolder(fromPrivate: boolean, actionType:'Download' | 'Upload', fileName:string){
+    try {
+      // This example copies a file from the app directory to the documents directory
+    let fromPrivacyFolder = this.getPrivacyFolder(fromPrivate);
+    let toPrivacyFolder = this.getPrivacyFolder(!fromPrivate);
+    console.log("\n\n\n\n\nmoving from "+this.root + "/" + actionType + "/" + fromPrivacyFolder  + "/" + fileName +" to " +  this.root + "/" + actionType + "/" + toPrivacyFolder + "/" + fileName + "\n\n\n\n\n");
+      let ret = await Filesystem.copy({
+        from: this.root + "/" + actionType + "/" + fromPrivacyFolder  + "/" + fileName,
+        to: this.root + "/" + actionType + "/" + toPrivacyFolder + "/" + fileName,
+        directory: FilesystemDirectory.Documents,
+        toDirectory: FilesystemDirectory.Documents
+      });
+      this.fileDelete(actionType, fileName, fromPrivate);
+    } catch(e) {
+      console.error('Unable to copy file', e);
     }
   }
 }
