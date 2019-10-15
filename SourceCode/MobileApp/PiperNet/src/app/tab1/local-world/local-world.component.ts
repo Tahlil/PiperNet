@@ -18,6 +18,8 @@ export class LocalWorldComponent implements OnInit {
   downloadedFiles: File[];
   uploadSort: string;
   downloadSort: string;
+  fullUploadList: File[];
+  fullDownloadList: File[];
 
   constructor(
     private fileIconService: FileTypeIconService,
@@ -82,6 +84,7 @@ export class LocalWorldComponent implements OnInit {
           index++;
         });
       }
+      this.fullUploadList = this.uploadedFiles;
     });
   }
 
@@ -105,6 +108,7 @@ export class LocalWorldComponent implements OnInit {
           index++;
         });
       }
+      this.fullDownloadList = this.downloadedFiles;
     });
   }
 
@@ -199,6 +203,15 @@ export class LocalWorldComponent implements OnInit {
   }
 
   onSearchChange($event){
-    
+    let searchDigest = $event.target.value;
+    if(searchDigest === ""){
+      this.uploadedFiles = this.fullUploadList;
+      this.downloadedFiles = this.downloadedFiles;
+    } 
+    else{
+      this.uploadedFiles = this.fullUploadList.filter(file => file.name.includes(searchDigest));
+      this.downloadedFiles = this.fullDownloadList.filter(file => file.name.includes(searchDigest));
+    }
+    console.log("Search res: " + searchDigest);
   }
 }
