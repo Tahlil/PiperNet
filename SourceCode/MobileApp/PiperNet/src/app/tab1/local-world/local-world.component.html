@@ -48,11 +48,11 @@
       <h3 class="badge badge-info">My Downloads</h3>
     </ion-col>
   </ion-row>
-  <ion-row style="height: 80%;" class="ion-no-padding text-white">
-      <ion-col size="2" class="sort-label" >
+  <ion-row style="height: 80%;" class="ion-no-padding text-white" >
+      <ion-col size="2" class="sort-label" *ngIf="uploadedFiles && uploadedFiles.length > 0" >
           <span>Sort <br>by</span>
       </ion-col>
-      <ion-col size="4" class="sort-select">
+      <ion-col size="4" class="sort-select" *ngIf="uploadedFiles && uploadedFiles.length > 0">
           <ion-select class="select" [(ngModel)]="uploadSort" (ionChange)="this.sortUploads();">
               <ion-select-option value="mtime-a" 
                 >Date &uarr;</ion-select-option
@@ -68,10 +68,10 @@
               >
             </ion-select>
       </ion-col>
-      <ion-col size="2" class="sort-label" >
+      <ion-col size="2" class="sort-label" *ngIf="downloadedFiles && downloadedFiles.length > 0">
           <span>Sort <br>by</span>
       </ion-col>
-      <ion-col size="4" class="sort-select" >
+      <ion-col size="4" class="sort-select" *ngIf="downloadedFiles && downloadedFiles.length > 0" >
           <ion-select class="select" [(ngModel)]="downloadSort" (ionChange)="this.sortDownloads()">
               <ion-select-option value="mtime-a" 
                 >Date &uarr;</ion-select-option
