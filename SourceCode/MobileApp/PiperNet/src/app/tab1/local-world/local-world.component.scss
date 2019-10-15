@@ -64,3 +64,13 @@ ion-list{
   max-height: 455px;
   overflow-y: scroll;
 }
+
+.private{
+  border: tomato;
+  border-style: outset;
+}
+
+.public{
+  border: palegreen;
+  border-style: outset;
+}

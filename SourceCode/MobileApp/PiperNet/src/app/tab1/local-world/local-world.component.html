@@ -105,7 +105,7 @@
                 <ion-label>
                   <h5>{{ uploadedFile.name }}<div class="d-flex">
                       <div class="pb-1">{{ uploadedFile.size }}</div>
-                      <div class="ml-auto pt-1"><img [src]="uploadedFile.isPrivate ? '../../../assets/img/lock.png' : '../../../assets/img/unlock.png'" height="15px" width="15px" (click)="changePrivacy('Upload', i)"></div>
+                      <div class="ml-auto pt-1"><img [src]="uploadedFile.isPrivate ? '../../../assets/img/lock.png' : '../../../assets/img/unlock.png'" [ngClass]="uploadedFile.isPrivate ? 'private' : 'public'" height="19px" width="19px" (click)="changePrivacy('Upload', i)"></div>
                     </div> 
                   </h5>
                 </ion-label>
@@ -143,7 +143,7 @@
                   <ion-label>
                       <h5>{{ downloadedFile.name }}<div class="d-flex">
                           <div class="pb-1">{{ downloadedFile.size }}</div>
-                          <div class="ml-auto pt-1"><img [src]="downloadedFile.isPrivate ? '../../../assets/img/lock.png' : '../../../assets/img/unlock.png'" height="15px" width="15px" (click)="changePrivacy('Download', i)"></div>
+                          <div class="ml-auto pt-1"><img [src]="downloadedFile.isPrivate ? '../../../assets/img/lock.png' : '../../../assets/img/unlock.png'" [ngClass]="downloadedFile.isPrivate ? 'private' : 'public'" height="19px" width="19px" (click)="changePrivacy('Download', i)"></div>
                         </div> 
                       </h5>
                   </ion-label>
