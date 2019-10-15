@@ -73,8 +73,9 @@ export class FileService {
     });
   }
 
-  async fileDelete(type:string, fileName:string) {
-    let fullPath = this.root + "/" + type + "/" + fileName; 
+  async fileDelete(type:string, fileName:string, isPrivate:boolean) {
+    let privacy = isPrivate ? 'private' : 'public';
+    let fullPath = this.root + "/" + type + "/" + privacy + "/" + fileName; 
     console.log("Full path: " + fullPath);
     await Filesystem.deleteFile({
       path: fullPath,

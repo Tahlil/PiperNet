@@ -117,9 +117,9 @@ export class LocalWorldComponent implements OnInit {
     return this.fileIconService.getFileImagePath(fileType);
   }
 
-  onDelete(type: string, fileName: string, slidingItem: IonItemSliding) {
+  onDelete(type: string, fileName: string, isPrivate:boolean, slidingItem: IonItemSliding) {
     slidingItem.close();
-    this.deleteFile(type, fileName);
+    this.deleteFile(type, fileName, isPrivate);
   }
 
   open(type: string, fileType: string, filePath: string, slidingItem: IonItemSliding) {
@@ -127,8 +127,8 @@ export class LocalWorldComponent implements OnInit {
     this.fileService.openFile(fileType, filePath);
   }
 
-  private deleteFile(type: string, fileName: string) {
-    this.fileService.fileDelete(type, fileName);
+  private deleteFile(type: string, fileName: string, isPrivate:boolean) {
+    this.fileService.fileDelete(type, fileName, isPrivate);
     let index;
     if (type === "Upload") {
       index = this.getFileIndex(this.uploadedFiles, fileName);

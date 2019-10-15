@@ -113,7 +113,7 @@
               <ion-item-options side="end">
                 <ion-item-option
                   color="danger"
-                  (click)="onDelete('Upload', uploadedFile.name, uploadSlidingItem)"
+                  (click)="onDelete('Upload', uploadedFile.name, uploadedFile.isPrivate, uploadSlidingItem)"
                 >
                   <ion-icon name="trash" slot="icon-only"></ion-icon>
                 </ion-item-option>
@@ -151,7 +151,7 @@
                 <ion-item-options side="end">
                   <ion-item-option
                     color="danger"
-                    (click)="onDelete('Download', downloadedFile.name, downloadSlidingItem)"
+                    (click)="onDelete('Download', downloadedFile.name, downloadedFile.isPrivate, downloadSlidingItem)"
                   >
                     <ion-icon name="trash" slot="icon-only"></ion-icon>
                   </ion-item-option>
