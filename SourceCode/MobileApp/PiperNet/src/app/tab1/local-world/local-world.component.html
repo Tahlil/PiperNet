@@ -103,7 +103,12 @@
                   <ion-img [src]="this.getImagePath(uploadedFile.type)"></ion-img>
                 </ion-thumbnail>
                 <ion-label>
-                  <h5>{{ uploadedFile.name }}<br>{{ uploadedFile.size }}</h5>
+                  <h5>{{ uploadedFile.name }}<div class="d-flex">
+                      <div >{{ uploadedFile.size }}</div>
+                      <div class="ml-auto"><img [src]="uploadedFile.isPrivate ? '../../../assets/img/lock.png' : '../../../assets/img/unlock.png'" height="15px" width="15px"></div>
+                    </div> 
+                  </h5>
+                  
                 </ion-label>
               </ion-item>
               <ion-item-options side="end">
