@@ -9,7 +9,8 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./splash-screen/splash-screen.module').then(m => m.SplashScreenPageModule)
-  },  { path: 'auth', loadChildren: './auth/auth/auth.module#AuthPageModule' }
+  },
+  { path: 'auth', loadChildren: './auth/auth.module#AuthPageModule' }
 
 ];
 @NgModule({
