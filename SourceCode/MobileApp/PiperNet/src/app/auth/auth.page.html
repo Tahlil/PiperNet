@@ -37,22 +37,35 @@
                 <ion-item *ngIf="!isSigningIn">
                     <ion-label position="floating">E-Mail</ion-label>
                     <ion-input
-                      type="email"
                       ngModel
                       name="email"
-                      email
-                      required
                       #emailCtrl="ngModel"
                     ></ion-input>
                     <ion-icon ios="ios-mail" md="md-mail" slot="end"></ion-icon>
-                  </ion-item>
-                  <ion-item *ngIf="!isSigningIn && emailValid" 
+                </ion-item>
+                  <ion-item *ngIf="!isSigningIn && !emailValid" 
                       lines="none">
                       <ion-label class="alert alert-danger" >
                             Should be a valid email address.
-                          </ion-label>
-                    </ion-item>
+                      </ion-label>
+                </ion-item>
+                <ion-item *ngIf="!isSigningIn">
+                    <ion-label position="floating">Mobile phone(optional)</ion-label>
+                    <ion-input
+                      ngModel
+                      name="phone"
+                      #phoneCtrl="ngModel"
+                    ></ion-input>
+                    <ion-icon ios="ios-call" md="md-call" slot="end"></ion-icon>
+                </ion-item>
+                  <ion-item *ngIf="!isSigningIn && !phoneValid" 
+                      lines="none">
+                      <ion-label class="alert alert-danger" >
+                            Should be a valid phone number.
+                      </ion-label>
+                </ion-item>
                 <ion-item>
+                  
                   <ion-label position="floating">Password</ion-label>
                   <ion-input
                     type="password"
@@ -62,7 +75,7 @@
                     minlength="6"
                     #passwordCtrl="ngModel"
                   ></ion-input>
-                  <ion-icon ios="ios-eye-off" md="md-eye-off" slot="end"></ion-icon>
+                  <ion-icon ios="ios-lock" md="md-lock" slot="end"></ion-icon>
                 </ion-item>
                 <ion-item
                   *ngIf="!passwordCtrl.valid && passwordCtrl.touched"
@@ -82,7 +95,7 @@
                       minlength="6"
                       #confirmPasswordCtrl="ngModel"
                     ></ion-input>
-                    <ion-icon ios="ios-eye-off" md="md-eye-off" slot="end"></ion-icon>
+                    <ion-icon ios="ios-lock" md="md-lock" slot="end"></ion-icon>
                   </ion-item>
                   <ion-item
                     *ngIf="!this.isSigningIn && !this.passwordMatch"
@@ -109,7 +122,6 @@
               <ion-button
                 type="submit"
                 color="primary"
-                (click)="onLogin()"
                 expand="block"
                 [disabled]="!f.valid"
               >
