@@ -1,9 +1,122 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>auth</ion-title>
-  </ion-toolbar>
+    <div id="container">
+        <img id="pic1" src="../../assets/img/signIn.png">
+        <img id="pic2" src="../../assets/img/propic.png" class="rounded">
+    </div>
+    <!-- <ion-toolbar>
+      <ion-title>{{ this.isSigningIn ? 'Login' : 'Signup' }}</ion-title>
+    </ion-toolbar> -->
 </ion-header>
 
 <ion-content>
-
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <ion-grid>
+          <ion-row>
+            <ion-col size-sm="6" offset-sm="3">
+              <ion-list>
+                <ion-item>
+                  <ion-label position="floating">Username</ion-label>
+                  <ion-input
+                    type="text"
+                    ngModel
+                    name="username"
+                    required
+                    username
+                    #usernameCtrl="ngModel"
+                  ></ion-input>
+                  <ion-icon ios="ios-contact" md="md-contact" slot="end"></ion-icon>
+                </ion-item>
+                <ion-item
+                  *ngIf="!usernameCtrl.valid && usernameCtrl.touched"
+                  lines="none"
+                >
+                  <ion-label class="alert alert-danger" >
+                    Username can not be empty.
+                  </ion-label>
+                </ion-item>
+                <ion-item *ngIf="!isSigningIn">
+                    <ion-label position="floating">E-Mail</ion-label>
+                    <ion-input
+                      type="email"
+                      ngModel
+                      name="email"
+                      email
+                      required
+                      #emailCtrl="ngModel"
+                    ></ion-input>
+                    <ion-icon ios="ios-mail" md="md-mail" slot="end"></ion-icon>
+                  </ion-item>
+                  <ion-item *ngIf="!isSigningIn && emailValid" 
+                      lines="none">
+                      <ion-label class="alert alert-danger" >
+                            Should be a valid email address.
+                          </ion-label>
+                    </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Password</ion-label>
+                  <ion-input
+                    type="password"
+                    ngModel
+                    name="password"
+                    required
+                    minlength="6"
+                    #passwordCtrl="ngModel"
+                  ></ion-input>
+                  <ion-icon ios="ios-eye-off" md="md-eye-off" slot="end"></ion-icon>
+                </ion-item>
+                <ion-item
+                  *ngIf="!passwordCtrl.valid && passwordCtrl.touched"
+                  lines="none"
+                >
+                  <ion-label class="alert alert-danger">
+                    Should at least be 6 characters long.
+                  </ion-label>
+                </ion-item>
+                <ion-item *ngIf="!isSigningIn">
+                    <ion-label position="floating">Confirm Password</ion-label>
+                    <ion-input
+                      type="password"
+                      ngModel
+                      name="confirmPassword"
+                      required
+                      minlength="6"
+                      #confirmPasswordCtrl="ngModel"
+                    ></ion-input>
+                    <ion-icon ios="ios-eye-off" md="md-eye-off" slot="end"></ion-icon>
+                  </ion-item>
+                  <ion-item
+                    *ngIf="!this.isSigningIn && !this.passwordMatch"
+                    lines="none"
+                  >
+                    <ion-label class="alert alert-danger">
+                      Passwords did not match.
+                    </ion-label>
+                  </ion-item>
+              </ion-list>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size-sm="6" offset-sm="3">
+              <ion-button 
+              type="button" 
+              color="primary" 
+              fill="clear" 
+              id="clear"
+              expand="block"
+              (click)="onSwitchAuthMode()">
+                Switch to {{ !this.isSigningIn ? 'Sign In' : 'Sign Up' }}
+              </ion-button>
+              <ion-button
+                type="submit"
+                color="primary"
+                (click)="onLogin()"
+                expand="block"
+                [disabled]="!f.valid"
+              >
+              {{ this.isSigningIn ? 'Sign In' : 'Sign Up' }}
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
 </ion-content>
