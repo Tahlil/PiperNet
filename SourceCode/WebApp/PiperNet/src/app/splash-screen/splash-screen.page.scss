@@ -1,0 +1,42 @@
+.swiper-slide {
+  display: block;
+}
+
+.slide-title {
+  color: white;
+  margin-top: 2.8rem;
+}
+
+.slide-image {
+  pointer-events: none;
+}
+
+b {
+  font-weight: 500;
+}
+
+
+p {
+  padding: 0 40px;
+  margin-top: 30%;
+  font-size: 17px;
+  line-height: 2.5;
+  color: var(--ion-color-step-600, #fff );
+
+  b {
+    color: var(--ion-text-color, rgb(0, 255, 170));
+  }
+}
+
+#features{
+  color: white;
+  margin-top: 17%;
+  margin-left: 11%;
+  text-align: left; 
+}
+
+.skipButton{
+  color: #005eff;
+  background: transparent;
+  margin-left: 75%;
+}

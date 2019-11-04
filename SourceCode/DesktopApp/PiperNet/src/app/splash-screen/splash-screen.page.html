@@ -1,0 +1,61 @@
+<!-- <ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button color='primary' (click)="startApp()" [hidden]="!showSkip">Skip</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header> -->
+
+<ion-content fullscreen >
+  <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)" pager="false" >
+    <ion-slide style="background-image: url('../../assets/img/splash1.png');"
+    [ngStyle]="{'height': this.height}">
+    <button class="skipButton" (click)="startApp()" [hidden]="!showSkip">Skip</button>
+        <h1 class="slide-title">
+          Welcome to <br>
+          <b style="color: aquamarine; text-shadow: -11px -9px 9px cadetblue; font-size: 55px">PiperNet</b>
+        </h1>
+        <p>
+          Your goto peer to peer file sharing app
+        </p>
+    </ion-slide>
+    <ion-slide style="background-image: url('../../assets/img/splash2.png');"
+    [ngStyle]="{'height': this.height}">
+    <button class="skipButton" color='primary' (click)="startApp()" [hidden]="!showSkip">Skip</button>
+      <h2 class="slide-title">What is PiperNet?</h2>
+      <p>
+        <b>Pipernet</b> is a blockchain-based web hosting scheme for
+        content-addressed distributed file system</p>
+    </ion-slide>
+
+    <ion-slide style="background-image: url('../../assets/img/splash3.png');"
+    [ngStyle]="{'height': this.height}">
+      <button class="skipButton" color='primary' (click)="startApp()" [hidden]="!showSkip">Skip</button>
+      <h2 class="slide-title">Things you can do here</h2>
+      <div id="features">
+        <ion-icon name="checkmark"></ion-icon>
+        <span> Upload file and access anywhere</span><br>
+        <ion-icon name="checkmark"></ion-icon>
+        <span> Host website and visit anywhere</span><br>
+        <ion-icon name="checkmark"></ion-icon>
+        <span> Get files of any type, uploaded by others</span><br>
+        <ion-icon name="checkmark"></ion-icon>
+        <span> Register your files public or private</span><br>
+        <br>
+        <b>All Through a secure P2P network</b>
+      </div>
+    </ion-slide>
+
+    <ion-slide style="background: url('../../assets/img/Splashe.png'); background-size: cover; background-position: center;"
+    [ngStyle]="{'height': this.height}">
+      <h2 class="bg-info">Let's get started.</h2>
+      <br>
+     
+        <ion-button fill="clear" (click)="startApp()">
+          <h3>GO!</h3>
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </ion-button>
+
+    </ion-slide>
+  </ion-slides>
+</ion-content>

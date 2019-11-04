@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Rename File</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="onCancel()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content color="primary">
+  <ion-grid>
+    <ion-row>
+      <ion-col
+        offset="1"
+        size="10"
+        color="primary"
+        class="ion-no-padding"
+        style="height: 80%;"
+      >
+        <ion-img [src]="this.getImagePath()" style="height: 80%;"></ion-img>
+        <ion-text class="text-center">
+          <div>
+            File name:
+            <p class="badge badge-info">{{ file.name }} <ion-icon color="danger" *ngIf="file.isPrivate" ios="ios-lock" md="md-lock"></ion-icon></p>
+          </div>
+          <div>
+            <span>File size: </span>
+            <span class="badge badge-info">{{ file.size }}</span>
+          </div>
+          <div>
+              <span>File Last Changed: </span>
+              <span class="badge badge-info">{{ this.getPrettyDate(file.mtime) }}</span>
+            </div>
+          <div>
+            <span>File type: </span>
+            <p class="badge badge-info">{{ file.type }}</p>
+          </div>
+          <div>
+            <span>File path: </span>
+            <p class="badge badge-info ion-text-wrap">
+              {{ this.splitPath(file.path) }}
+            </p>
+          </div>
+        </ion-text>
+            <ion-item>
+                <ion-label position="floating">New name</ion-label>
+                <ion-input required minlength="1" type="text" [(ngModel)]="this.newName"></ion-input>
+                <span slot="end">.{{ file.type }}</span>
+              </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col offset="1" size="10">
+        <ion-button
+          type="submit"
+          class="text-center"
+          expand="block"
+          color="success"
+          (click)="onSubmit()"
+        >
+          Rename
+        </ion-button>
+        <div class="alert alert-danger" *ngIf="!this.valid">
+            <strong>Error: </strong> Name field can not be empty.
+      </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,0 +1,76 @@
+#caption{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.localBtn{
+  background: transparent;
+  padding: 7px;
+  border: whitesmoke solid 1px;
+  text-decoration: underline;
+  color: whitesmoke;
+}
+
+.share{
+  line-height: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right:0px;
+    display:inline-block;
+    position:relative;
+}
+
+img + span.localBtn{
+  position:absolute;
+  top: 25px;
+  left: 25px;
+  opacity: 0.7;
+}
+
+#shareIcon{
+  opacity: 0.5;
+}
+
+ion-thumbnail {
+  background-image: url("../../../assets/img/EmeraldGreen.jpg");
+  min-width: 30px;
+  max-width: 30px;     
+  min-height: 30px;
+  max-height: 30px;
+  ion-img {
+    min-width: 30px;
+    max-width: 30px;     
+    min-height: 30px;
+    max-height: 30px;
+  }
+}
+
+ion-item-option {
+  max-width: 25px;
+}
+
+.sort-label{
+  border-top:  1px solid white;
+  border-left:  1px solid white; 
+  border-bottom: 1px solid white;
+}
+
+.sort-select{
+  border-top:    1px solid white;
+  border-right:  1px solid white; 
+  border-bottom: 1px solid white;
+}
+
+ion-list{
+  max-height: 455px;
+  overflow-y: scroll;
+}
+
+.private{
+  border: tomato;
+  border-style: outset;
+}
+
+.public{
+  border: palegreen;
+  border-style: outset;
+}

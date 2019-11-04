@@ -1,0 +1,169 @@
+<ion-grid class="ion-no-padding">
+  <ion-row>
+      <ion-col size="3" class="ion-text-center share" (click)="this.shareFromAll()">
+        <br>
+        <img src="../../../../../assets/img/Share-icon.png" class="img-fluid" width="45px" height="45px" alt="" id="shareIcon">
+        <span class="btn-floating localBtn" style="float: left">Share</span>
+      </ion-col>
+    <ion-col size="7" class="ion-text-center">
+      <h1 id="caption">Your World</h1>
+    </ion-col>
+    <ion-col size="2">
+        <button id="backButton" (click)="this.goBack()"> <img src="../../../assets/img/back-button-icon-png-21.jpg"  width="75px" height="35px" alt="<"></button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col offset="2" size="4" class="ion-text-center">
+      <button class="localBtn ion-activatable"  ion-text-center (click)="this.openModal('Upload')"> Upload File
+          <!-- onclick="document.getElementById('uploadFile').click()" -->
+      <ion-ripple-effect></ion-ripple-effect>
+      </button>
+    </ion-col>
+    <ion-col size="5" class="ion-text-center">
+      <button class="localBtn ion-activatable" ion-text-center (click)="this.openModal('Download')"> 
+        Download File
+        <!-- onclick="document.getElementById('downloadFile').click()" -->
+          <ion-ripple-effect></ion-ripple-effect>
+      </button>
+      <input type='file' id="downloadFile" style="display:none">
+    </ion-col>
+  </ion-row>
+  <ion-row>
+      <ion-col size="10" offset="1">
+        <ion-searchbar
+          placeholder="search file..."
+          animated
+          autocomplete
+          (ionChange)="onSearchChange($event)"
+          [debounce]="250"
+          color="success"
+        ></ion-searchbar>
+      </ion-col>
+    </ion-row>
+  <ion-row>
+    <ion-col size="6">
+      <h3 class="badge badge-info">My Uploads</h3>
+    </ion-col>
+    <ion-col size="6" class="text-right">
+      <h3 class="badge badge-info">My Downloads</h3>
+    </ion-col>
+  </ion-row>
+  <ion-row style="height: 80%;" class="ion-no-padding text-white" >
+      <ion-col size="2" class="sort-label" *ngIf="uploadedFiles && uploadedFiles.length > 0" >
+          <span>Sort <br>by</span>
+      </ion-col>
+      <ion-col size="4" class="sort-select" *ngIf="uploadedFiles && uploadedFiles.length > 0">
+          <ion-select class="select" [(ngModel)]="uploadSort" (ionChange)="this.sortUploads();">
+              <ion-select-option value="mtime-a" 
+                >Date &uarr;</ion-select-option
+              >
+              <ion-select-option value="mtime-d" 
+                >Date &darr;</ion-select-option
+              >
+              <ion-select-option value="name-a"
+                >Alph &uarr;</ion-select-option
+              >
+              <ion-select-option value="name-d"
+                >Alph &darr;</ion-select-option
+              >
+            </ion-select>
+      </ion-col>
+      <ion-col size="2" class="sort-label" *ngIf="downloadedFiles && downloadedFiles.length > 0">
+          <span>Sort <br>by</span>
+      </ion-col>
+      <ion-col size="4" class="sort-select" *ngIf="downloadedFiles && downloadedFiles.length > 0" >
+          <ion-select class="select" [(ngModel)]="downloadSort" (ionChange)="this.sortDownloads()">
+              <ion-select-option value="mtime-a" 
+                >Date &uarr;</ion-select-option
+              >
+              <ion-select-option value="mtime-d"
+                >Date &darr;</ion-select-option
+              >
+              <ion-select-option value="name-a"
+                >Alph &uarr;</ion-select-option
+              >
+              <ion-select-option value="name-d"
+                >Alph &darr;</ion-select-option
+              >
+            </ion-select>
+      </ion-col>
+</ion-row>
+  <ion-row>
+    <ion-col size="6" class="border border-right-5 border-left-0 border-top-0 border-bottom-0 ">
+      <div class="text-center" *ngIf="uploadedFiles.length===0">
+          <ion-text class="badge badge-primary text-center">
+              <br>No File Currently Uploaded. 
+              <p>Upload to get started<br> <ion-icon ios="ios-color-wand" md="md-color-wand"   style="font-size: 33px"></ion-icon></p>
+            </ion-text>
+      </div>
+      <ion-list *ngIf="uploadedFiles && uploadedFiles.length > 0" class="text-white">
+            <ion-item-sliding *ngFor="let uploadedFile of uploadedFiles; let i = index;"  #uploadSlidingItem>
+              <ion-item color="success" class="ion-no-padding border border-right-0 border-left-0 border-top-0 border-bottom-3">
+                <ion-thumbnail slot="start">
+                  <ion-img [src]="this.getImagePath(uploadedFile.type)"></ion-img>
+                </ion-thumbnail>
+                <ion-label>
+                  <h5>{{ uploadedFile.name }}<div class="d-flex">
+                      <div class="pb-1">{{ uploadedFile.size }}</div>
+                      <div class="ml-auto pt-1"><img [src]="uploadedFile.isPrivate ? '../../../assets/img/lock.png' : '../../../assets/img/unlock.png'" [ngClass]="uploadedFile.isPrivate ? 'private' : 'public'" height="19px" width="19px" (click)="changePrivacy('Upload', i)"></div>
+                    </div> 
+                  </h5>
+                </ion-label>
+              </ion-item>
+              <ion-item-options side="end">
+                <ion-item-option
+                  color="danger"
+                  (click)="onDelete('Upload', uploadedFile.name, uploadedFile.isPrivate, uploadSlidingItem)"
+                >
+                  <ion-icon name="trash" slot="icon-only"></ion-icon>
+                </ion-item-option>
+                <ion-item-option color="secondary" (click)="this.openRenameModal('Upload', uploadedFile, uploadSlidingItem)">
+                    <ion-icon ios="ios-create" md="md-create" slot="icon-only"></ion-icon>
+                  </ion-item-option>
+                  <ion-item-option color="primary" (click)="this.open('Upload', uploadedFile.type, uploadedFile.path, uploadSlidingItem)">
+                      <ion-icon ios="ios-open" md="md-open" slot="icon-only"></ion-icon>
+                    </ion-item-option> 
+              </ion-item-options>
+            </ion-item-sliding>
+          </ion-list>
+    </ion-col>
+    <ion-col size="6" class="border border-left-5 border-right-0 border-top-0 border-bottom-0">
+      <div class="text-center" *ngIf="downloadedFiles.length===0">
+          <ion-text class="badge badge-primary text-center" >
+              <br>No File Downloaded yet.  
+              <p>Check if there's any <br> file to download<br><ion-icon ios="ios-cloud-download" md="md-cloud-download" style="font-size: 33px"></ion-icon></p>
+            </ion-text>
+      </div>
+          <ion-list *ngIf="downloadedFiles && downloadedFiles.length > 0" class="text-white">
+              <ion-item-sliding *ngFor="let downloadedFile of downloadedFiles; let i = index;" #downloadSlidingItem>
+                <ion-item color="success" class="ion-no-padding border border-right-0 border-left-0 border-top-0 border-bottom-3">
+                  <ion-thumbnail slot="start">
+                    <ion-img [src]="this.getImagePath(downloadedFile.type)" ></ion-img>
+                  </ion-thumbnail>
+                  <ion-label>
+                      <h5>{{ downloadedFile.name }}<div class="d-flex">
+                          <div class="pb-1">{{ downloadedFile.size }}</div>
+                          <div class="ml-auto pt-1"><img [src]="downloadedFile.isPrivate ? '../../../assets/img/lock.png' : '../../../assets/img/unlock.png'" [ngClass]="downloadedFile.isPrivate ? 'private' : 'public'" height="19px" width="19px" (click)="changePrivacy('Download', i)"></div>
+                        </div> 
+                      </h5>
+                  </ion-label>
+                </ion-item>
+                <ion-item-options side="end">
+                  <ion-item-option
+                    color="danger"
+                    (click)="onDelete('Download', downloadedFile.name, downloadedFile.isPrivate, downloadSlidingItem)"
+                  >
+                    <ion-icon name="trash" slot="icon-only"></ion-icon>
+                  </ion-item-option>
+                  <ion-item-option color="secondary" (click)="this.openRenameModal('Download', downloadedFile, downloadSlidingItem)">
+                    <ion-icon ios="ios-create" md="md-create" slot="icon-only"></ion-icon>
+                  </ion-item-option>
+                  <ion-item-option color="primary" (click)="this.open('Download', downloadedFile.type, downloadedFile.path, downloadSlidingItem)">
+                      <ion-icon ios="ios-open" md="md-open" slot="icon-only"></ion-icon>
+                    </ion-item-option> 
+                </ion-item-options>
+              </ion-item-sliding>
+            </ion-list>
+    </ion-col>
+  </ion-row>
+</ion-grid>

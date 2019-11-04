@@ -1,0 +1,7 @@
+{
+  "appId": "io.ionic.pipernet",
+  "appName": "PiperNet",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}

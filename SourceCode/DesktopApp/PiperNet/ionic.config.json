@@ -1,0 +1,7 @@
+{
+  "name": "PiperNet",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

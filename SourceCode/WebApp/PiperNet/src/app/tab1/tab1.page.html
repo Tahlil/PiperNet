@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-thumbnail style="float: left" class="p-1">
+      <img src="../../assets/icon/logoCirclular.png" />
+    </ion-thumbnail>
+    
+    <ion-label class="ml-5">Hi, <strong>Username</strong></ion-label>
+    <br>
+    <ion-label class="ml-5 text-info">Welcome!</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+  <ion-content class="foggy-forest" >
+      <div [ngClass]="homeViewClass" style="height: 150%">
+        <div *ngIf="this.currentView === 'home'" id="home">
+            <br>
+            <ion-row>
+              <ion-col size="12" class="ion-text-center">
+                  <h3 id="goTo" class="animated lightSpeedIn 3s">Go To...</h3>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="1">
+                  </ion-col>
+              <ion-col size="4">
+                <div id="emerald" (click)="goToLocalWorld()" class="rotate border border-info ion-text-center"><br><h4 class="animated zoomIn 5s">Your  <br> World</h4></div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="1">
+                  </ion-col>
+                <ion-col size="4">
+                <div id="frost" (click)="goToPiperNetWorld()" class="rotate border border-info ion-text-center"><br><h4 class="animated zoomIn 5s">PiperNet World </h4></div>
+                </ion-col>
+              </ion-row>
+        </div>
+        <div *ngIf="this.currentView === 'local'">
+          <app-local-world (changeView)='this.backToHome($event)'></app-local-world>
+        </div>
+        <div *ngIf="this.currentView === 'piperNet'">
+          <app-piper-net-world (changeView)='this.backToHome($event)'></app-piper-net-world>           
+        </div>
+      </div>
+  </ion-content>
+
+
