@@ -4,12 +4,8 @@
         <ion-col offset="1" size="5">
             <h3><span class="badge badge-secondary">Share File(s)</span> </h3>
         </ion-col>
-        <ion-col size="5">
-            <ion-buttons slot="primary">
-                <ion-button (click)="onCancel()" slot="end">
-                  <ion-icon name="close"></ion-icon>
-                </ion-button>
-              </ion-buttons>
+        <ion-col offset="5" size="1">
+            <ion-icon (click)="onCancel()" name="close"></ion-icon>
         </ion-col>
       </ion-row>
       <ion-row class="ion-no-padding" id="fileList">
