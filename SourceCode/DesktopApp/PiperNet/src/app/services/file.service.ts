@@ -7,6 +7,7 @@ import { MimeTypeService } from "./mime-type.service";
 import {
   Capacitor,
   Plugins,
+  Device,
   CameraResultType,
   FilesystemDirectory,
   FilesystemEncoding
@@ -24,30 +25,47 @@ export class FileService {
 
   constructor(private fileTypeService: FileTypeIconService, private fileOpener: FileOpener, private mimetypeService: MimeTypeService)
   {
+    let self = this;
     this.root = config.rootFolder;
-    let files = this.readdir(""),
+    const info = this.getDeviceInfo();
+    info.then((value) => {
+      let platform = value.model.split(' ')[0];
+      console.log("Platform: " + platform);
+      self.root = config[platform+'rootFolder'];
+      console.log("Root: "+ self.root);      
+      console.log("Device INFOS:");
+      console.log(value);
+      let files = this.readdir(""),
       mkdir = this.mkdir;
-    console.log("Files: ");
-    files.then(res => {
-      let rootFolderNotCreated = true;
-      for (const file of res.files) {
-        console.log("File: " + file);
-        if (file === this.root) {
-          rootFolderNotCreated = false;
-          break;
+      console.log("Files  kkk: ");
+      files.then(res => {
+        let rootFolderNotCreated = true;
+        for (const file of res.files) {
+          console.log("File: " + file);
+          if (file === self.root) {
+            rootFolderNotCreated = false;
+            break;
+          }
         }
-      }
-      if (rootFolderNotCreated) {
-        console.log("Have to create root folder: " + this.root);
-        //mkdir(this.root);
-        mkdir(this.root + "/Upload/private");
-        mkdir(this.root + "/Upload/public");
-        mkdir(this.root + "/Download/private");
-        mkdir(this.root + "/Download/public");
-      } else {
-        console.log("Something went wrong.");
-      }
+        if (rootFolderNotCreated) {
+          console.log("Have to create root folder: " + self.root);
+          mkdir(self.root);
+          mkdir(self.root + "/Upload");
+          mkdir(self.root + "/Download");
+
+          mkdir(self.root + "\\Upload\\private");
+          mkdir(self.root + "\\Upload\\public");
+          mkdir(self.root + "\\Download\\private");
+          mkdir(self.root + "\\Download\\public");
+        } else {
+          console.log("Something went wrong.");
+        }
+      });
     });
+  }
+
+  async getDeviceInfo(){
+    return await Device.getInfo();
   }
 
   fileWrite(actionType: 'Upload' | 'Download', fileName:string, base64data:string, privacy: 'private' | 'public') {
@@ -84,6 +102,8 @@ export class FileService {
   }
 
   async mkdir(directory) {
+    console.log("Try to create dir " +  directory);
+    console.log("Directory: " + FilesystemDirectory.Documents);
     try {
       let ret = await Filesystem.mkdir({
         createIntermediateDirectories: true,
@@ -109,6 +129,7 @@ export class FileService {
   }
 
   private getAllFilesInfo(dir){
+    
     let privateFiles = this.readdir(dir+"/"+"private"), files = [], index = 0;
     return privateFiles.then(res => {
       for (const fileName of res.files) {
@@ -137,6 +158,7 @@ export class FileService {
   }
 
   async readdir(folder) {
+    console.log("ROOT FOLDER: " + this.root);    
     try {
       let ret = await Filesystem.readdir({
         path: folder,

@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">PiperNet</string>
-    <string name="title_activity_main">PiperNet</string>
-    <string name="package_name">io.ionic.pipernet</string>
-    <string name="fileprovider_authority">io.ionic.pipernet.fileprovider</string>
-    <string name="custom_url_scheme">io.ionic.pipernet</string>
-</resources>

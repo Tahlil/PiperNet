@@ -1,3 +1,8 @@
 export const config = {
-  rootFolder: "PiperNet"
+  rootFolder: "PiperNet",
+  WindowsrootFolder: "PiperNet",
+  macrootFolder: "PiperNet",
+  linuxrootFolder: "PiperNet"
+
 }
+//C:\\Users\\USER\\Documents\\
