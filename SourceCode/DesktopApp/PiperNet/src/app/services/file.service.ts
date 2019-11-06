@@ -3,7 +3,7 @@ import { File } from "../models/file.model";
 import { FileTypeIconService } from "./file-type-icon.service";
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { MimeTypeService } from "./mime-type.service";
-import { IpcRenderer, shell } from 'electron';
+import { IpcRenderer } from 'electron';
 
 import {
   Capacitor,
@@ -84,8 +84,8 @@ export class FileService {
 
   openFile(fileType:string, filePath:string){
     console.log("File path: " + filePath);
-    let isOpened = shell.openItem(filePath);
-    console.log("Is Opened: " + isOpened);
+    //let isOpened = shell.openItem(filePath);
+    //console.log("Is Opened: " + isOpened);
     this.fileOpener.showOpenWithDialog(filePath, this.mimetypeService.getMimeType(fileType))
     .then(() => console.log('File is opened'))
     .catch(e => {
