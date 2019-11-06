@@ -1,7 +1,8 @@
 {
   "name": "PiperNet",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

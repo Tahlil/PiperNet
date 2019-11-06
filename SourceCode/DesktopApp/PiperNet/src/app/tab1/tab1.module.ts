@@ -9,6 +9,7 @@ import { LocalWorldComponent } from "./local-world/local-world.component";
 import { FileModalComponent } from "./local-world/file-modal/file-modal.component";
 import { FileRenameModalComponent } from "./local-world/file-rename-modal/file-rename-modal.component";
 import { ShareModalComponent } from "./local-world/share-modal/share-modal.component";
+import { NotificationComponent } from "../notification/notification.component";
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { ShareModalComponent } from "./local-world/share-modal/share-modal.compo
     FormsModule,
     RouterModule.forChild([{ path: '', component: Tab1Page }])
   ],
-  declarations: [Tab1Page, PiperNetWorldComponent, LocalWorldComponent, FileModalComponent, FileRenameModalComponent, ShareModalComponent],
+  declarations: [Tab1Page, PiperNetWorldComponent, LocalWorldComponent, NotificationComponent, FileModalComponent, FileRenameModalComponent, ShareModalComponent],
   entryComponents: [FileModalComponent, FileRenameModalComponent, ShareModalComponent]
 })
 export class Tab1PageModule {}
