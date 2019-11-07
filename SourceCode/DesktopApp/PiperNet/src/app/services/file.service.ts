@@ -3,7 +3,6 @@ import { File } from "../models/file.model";
 import { FileTypeIconService } from "./file-type-icon.service";
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { MimeTypeService } from "./mime-type.service";
-import { IpcRenderer } from 'electron';
 
 import {
   Capacitor,
