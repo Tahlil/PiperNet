@@ -7,6 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
+import { AuthPageModule } from './auth/auth.module';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,7 +17,7 @@ import { FileOpener } from '@ionic-native/file-opener/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, AuthPageModule],
   providers: [
     StatusBar,
     SplashScreen,

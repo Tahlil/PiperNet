@@ -4,16 +4,17 @@
       <ion-icon name="cog"> </ion-icon> 
       Options      
     </ion-title>
+    
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
+<ion-content *ngIf="this.showOptions">
+  <ion-list >
     <ion-item>
       <ion-avatar slot="start" >
         <img src="../../assets/img/login-icon.jpg">
       </ion-avatar>
-      <ion-label class="bg-light" >
+      <ion-label class="bg-light" (click)="this.gotoSignIn()">
         <h2>Sign In</h2>
         <p>Enter name and password to sign in</p>
       </ion-label>
@@ -22,10 +23,23 @@
       <ion-avatar slot="start" class="border border-success rounded-circle">
         <img src="../../assets/img/signup-icon.png">
       </ion-avatar>
-      <ion-label class="bg-light">
+      <ion-label class="bg-light" (click)="this.gotoSignUp()">
           <h2>Sign Up</h2>
           <p>Sign up for this machine</p>  
       </ion-label>
     </ion-item>
   </ion-list>
+</ion-content>
+<ion-content *ngIf="showSignIn">
+  <app-auth [isSigningIn]='true'></app-auth>
+  <ion-button (click)="this.goBackToOptions()" expand="full">
+      Go back to options
+    </ion-button>
+</ion-content>
+
+<ion-content  *ngIf="showSignUp">
+  <app-auth [isSigningIn]='false'></app-auth>
+  <ion-button (click)="this.goBackToOptions()" expand="full">
+      Go back to options
+    </ion-button>
 </ion-content>

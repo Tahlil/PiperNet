@@ -9,7 +9,7 @@ import { AuthPage } from './auth.page';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'auth',
     component: AuthPage
   }
 ];
@@ -20,6 +20,9 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes)
+  ],
+  exports: [
+    AuthPage
   ],
   declarations: [AuthPage]
 })
