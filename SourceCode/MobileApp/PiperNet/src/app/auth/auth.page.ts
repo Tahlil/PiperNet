@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './auth.page.html',
   styleUrls: ['./auth.page.scss'],
 })
+
 export class AuthPage implements OnInit {
   @Input() isSigningIn:boolean;
   passwordMatch:boolean; 
